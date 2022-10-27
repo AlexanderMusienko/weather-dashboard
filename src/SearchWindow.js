@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SearchWindow({ foundedItems, onClickFunc }) {
+export default function SearchWindow({ foundedItems, onClickFunc, onChangeFunc }) {
   return (
     <div
       className="outer-window"
@@ -33,7 +33,6 @@ export default function SearchWindow({ foundedItems, onClickFunc }) {
       />
       <div
         className="inner-window"
-        tabIndex={"100"}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -49,6 +48,7 @@ export default function SearchWindow({ foundedItems, onClickFunc }) {
         }}
       >
         <input
+        onChange={onChangeFunc}
           placeholder="Search Your Location"
           type={"search"}
           style={{

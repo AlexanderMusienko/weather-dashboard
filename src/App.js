@@ -66,14 +66,14 @@ export default function App() {
   const [data, setData] = useState()
   const [searchVisibility, setSearchVisibility] = useState(false);
   const [checkboxValue, setCheckboxValue] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [currentRegion, setCurrentRegion] = useState('');
 
   const allRegions = JSON.parse(JSON.stringify(allRegionsJson));
   const allCountries = Object.keys(allRegions);
+  const filteredCountries = searchValue ? allCountries.filter((country) => country.toLowerCase().startsWith(searchValue)) : null;
 
-  function getSearchVisibility(e) {
-    e.stopPropagation()
-    console.log(e.target);
-
+  function getSearchVisibility() {
     const visible = searchVisibility ? false : true;
     setSearchVisibility(visible);
   }
@@ -88,7 +88,14 @@ export default function App() {
     const data = checkboxValue ? 1 : 0;
     setData(data);
   }
+
+  function getSearchValue(e) {
+    const searchValue = e.target.value;
+    setSearchValue(searchValue.toLowerCase());
+  }
   
+  console.log(searchValue)
+  console.log(filteredCountries)
   console.log(`Search state: ${searchVisibility}`);
   console.log(allCountries);
   console.log(data);
@@ -108,7 +115,7 @@ export default function App() {
           lastUpdateDate={current.last_updated}
           />
       </div>
-      {searchVisibility ? <SearchWindow onClickFunc={getSearchVisibility}/> : null}
+      {searchVisibility ? <SearchWindow onChangeFunc={getSearchValue} onClickFunc={getSearchVisibility}/> : null}
       <GetInfoButton onClickCheckboxFunc={getCheckboxValue} onClickButtonFunc={getWeatherData}/>
     </>
   )
