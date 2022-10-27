@@ -6,7 +6,7 @@ export default function MainWeatherTab(props) {
 
 
   return (
-    <div className={props.class}>
+    <div className={props.className}>
       {props.buttonComponent}
       <img alt='weather' src={props.weatherIcon} style={{maxWidth: '128px'}}></img>
       <span style={{fontSize: '70px'}}>{props.temperature}<sup style={{fontSize: '36px', fontWeight: '600'}}>°C</sup></span>

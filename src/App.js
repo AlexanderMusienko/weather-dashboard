@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import SearchButton from './SearchButton'
 import MainWeatherTab from './MainWeatherTab'
 import GetInfoButton from './GetInfoButton'
+import SearchWindow from './SearchWindow'
+
+const allRegionsJson = require('./allRegions');
 
 const {location, current} = {
     "location": {
@@ -59,12 +62,44 @@ const {location, current} = {
   console.log(location, current)
 
 export default function App() {
+
+  const [data, setData] = useState()
+  const [searchVisibility, setSearchVisibility] = useState(false);
+  const [checkboxValue, setCheckboxValue] = useState(false);
+
+  const allRegions = JSON.parse(JSON.stringify(allRegionsJson));
+  const allCountries = Object.keys(allRegions);
+
+  function getSearchVisibility(e) {
+    e.stopPropagation()
+    console.log(e.target);
+
+    const visible = searchVisibility ? false : true;
+    setSearchVisibility(visible);
+  }
+
+  function getCheckboxValue(e) {
+    const value = e.target.checked;
+    setCheckboxValue(value);
+  }
+
+  function getWeatherData(e) {
+    e.preventDefault();
+    const data = checkboxValue ? 1 : 0;
+    setData(data);
+  }
+  
+  console.log(`Search state: ${searchVisibility}`);
+  console.log(allCountries);
+  console.log(data);
+  console.log(checkboxValue);
+
   return (
     <>
       <div className='top-section-container'>
           <MainWeatherTab 
-          class={'main-weather-tab'} 
-          buttonComponent={<SearchButton/>} 
+          className={'main-weather-tab'} 
+          buttonComponent={<SearchButton onClickFunc={getSearchVisibility}/>} 
           weatherIcon={current.condition.icon}
           temperature={current.temp_c}
           weatherCondition={current.condition.text}
@@ -73,7 +108,8 @@ export default function App() {
           lastUpdateDate={current.last_updated}
           />
       </div>
-      <GetInfoButton/>
+      {searchVisibility ? <SearchWindow onClickFunc={getSearchVisibility}/> : null}
+      <GetInfoButton onClickCheckboxFunc={getCheckboxValue} onClickButtonFunc={getWeatherData}/>
     </>
   )
 }
