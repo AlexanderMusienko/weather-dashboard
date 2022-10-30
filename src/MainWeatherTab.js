@@ -4,7 +4,6 @@ import calendarIcon from './icons/calendar.svg'
 
 export default function MainWeatherTab(props) {
 
-
   return (
     <div className={props.className}>
       {props.buttonComponent}

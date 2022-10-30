@@ -44,3 +44,21 @@ button {
 .button:hover {
     background-color: black;
 }
+
+.region-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #1f1f1f30;
+    border: 0;
+    text-align: start;
+    border-radius: 15px;
+    font-size: 18px;
+}
+
+.region-button:hover {
+    background-color: #5e5e5e30;
+}
+
+.region-button:active {
+    background-color: #cccccc30;
+}

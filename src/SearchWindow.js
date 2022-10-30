@@ -1,6 +1,17 @@
 import React from "react";
 
-export default function SearchWindow({ foundedItems, onClickFunc, onChangeFunc }) {
+export default function SearchWindow({ foundedCountriesList, onClickFunc, onChangeFunc, onClickRegion }) {
+  const jsxFoundedCountries = foundedCountriesList.map((country) => (
+    <button
+      className="region-button"
+      key={country}
+      value={country.toLowerCase()}
+      onClick={onClickRegion}
+    >
+      {country}
+    </button>
+  ));
+
   return (
     <div
       className="outer-window"
@@ -31,7 +42,7 @@ export default function SearchWindow({ foundedItems, onClickFunc, onChangeFunc }
           height: "100vh",
         }}
       />
-      <div
+      <form
         className="inner-window"
         style={{
           display: "flex",
@@ -44,11 +55,11 @@ export default function SearchWindow({ foundedItems, onClickFunc, onChangeFunc }
           backdropFilter: "blur(10px)",
           backgroundColor: "#00000050",
           borderRadius: "20px",
-          gap: "15px",
+          gap: "25px",
         }}
       >
         <input
-        onChange={onChangeFunc}
+          onChange={onChangeFunc}
           placeholder="Search Your Location"
           type={"search"}
           style={{
@@ -61,8 +72,8 @@ export default function SearchWindow({ foundedItems, onClickFunc, onChangeFunc }
             color: "black",
           }}
         />
-        {foundedItems}
-      </div>
+        {jsxFoundedCountries}
+      </form>
     </div>
   );
 }
