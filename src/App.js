@@ -4,6 +4,14 @@ import SearchButton from "./SearchButton";
 import MainWeatherTab from "./MainWeatherTab";
 import SearchWindow from "./SearchWindow";
 
+const weatherIcons = require.context('./icons/weather', true, /\.svg$/)
+const allWeatherIconsPaths = weatherIcons.keys()
+const weatherSvgs = allWeatherIconsPaths.map( path => weatherIcons ( path ) )
+
+console.log(weatherSvgs)
+
+const allRegionsJson = require("./allRegions");
+
 const url = {
   test: 'https://jsonplaceholder.typicode.com/todos/1/posts',
   main: 'https://api.weatherapi.com/v1/current.json?key=2e40d0c4e5034462948203411222410&q='
@@ -11,11 +19,10 @@ const url = {
 
 const fetchUrl = url.main;
 
-const allRegionsJson = require("./allRegions");
-
 export default function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [searchVisibility, setSearchVisibility] = useState(false);
+  const [weatherIcon, setWeatherIcon] = useState('');
   const [searchValue, setSearchValue] = useState("");
   const [currentRegion, setCurrentRegion] = useState("");
 
@@ -64,19 +71,14 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    (() => {
-    fetch(`${fetchUrl}${currentRegion}`)
-    .then(response => {
-      if (response.status === 200) {
-        return response.json()
-      }
-      if (response.status === 404) {
-        throw new Error('Not found')
-      }
-    })
-    .then(data => setWeatherData(data))
-    .catch(error => console.log(error))
-    })()
+    const fetchWeather = async () => {
+      const data = await fetch(`${fetchUrl}${currentRegion}`)
+
+      const json = await data.json()
+      setWeatherData(json)
+    }
+    fetchWeather()
+    .catch(error => console.log(error)) 
   }, [currentRegion])
 
   return (
@@ -85,12 +87,12 @@ export default function App() {
         <MainWeatherTab
           className={"main-weather-tab"}
           buttonComponent={<SearchButton onClickFunc={getSearchVisibility} />}
-          weatherIcon={ weatherData ? weatherData.current.condition.icon.replace('64x64', '128x128') : ''}
-          temperature={ weatherData ? weatherData.current.temp_c : ''}
-          weatherCondition={ weatherData ? weatherData.current.condition.text : ''}  
-          weatherConditionIcon={ weatherData ? weatherData.current.condition.icon : ''}
-          location={ weatherData ? weatherData.location.name + ", " + weatherData.location.country : ''}
-          lastUpdateDate={ weatherData ? weatherData.current.last_updated : ''}
+          weatherIcon={ weatherData?.current ? weatherData.current.condition.icon.replace('64x64', '128x128') : ''}
+          temperature={ weatherData?.current ? weatherData.current.temp_c : ''}
+          weatherCondition={ weatherData?.current ? weatherData.current.condition.text : ''}  
+          weatherConditionIcon={ weatherData?.current ? weatherData.current.condition.icon : ''}
+          location={ weatherData?.current? weatherData.location.name + ", " + weatherData.location.country : ''}
+          lastUpdateDate={ weatherData?.current ? weatherData.current.last_updated : ''}
         />
       </div>
       {searchVisibility ? (
