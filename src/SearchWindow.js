@@ -42,20 +42,21 @@ export default function SearchWindow({ foundedCountriesList, onClickFunc, onChan
           height: "100vh",
         }}
       />
-      <form
+      <div
         className="inner-window"
         style={{
           display: "flex",
+          overflow: 'scroll',
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           width: "50%",
           maxWidth: "450px",
+          maxHeight: "450px",
           padding: "20px",
-          backdropFilter: "blur(10px)",
           backgroundColor: "#00000050",
           borderRadius: "20px",
-          gap: "25px",
+          zIndex: 1,
         }}
       >
         <input
@@ -67,13 +68,22 @@ export default function SearchWindow({ foundedCountriesList, onClickFunc, onChan
             maxWidth: "450px",
             fontSize: "20px",
             margin: "0 auto",
+            marginBottom: jsxFoundedCountries.length === 0 ? '0' : '25px',
             padding: "10px 20px",
             borderRadius: "15px",
             color: "black",
           }}
         />
-        {jsxFoundedCountries}
-      </form>
+        <div style={{
+          display: 'flex',
+          width: '100%',
+          gap: '15px',
+          flexDirection: 'column',
+          overflow: 'scroll',
+        }}>
+          {jsxFoundedCountries}
+        </div>
+      </div>
     </div>
   );
 }
