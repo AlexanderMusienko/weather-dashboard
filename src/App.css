@@ -17,7 +17,7 @@ button {
 .top-section-container {
     margin: 25px;
     display: flex;
-    justify-content: row;
+    flex-direction: row;
 }
 
 .main-weather-tab {

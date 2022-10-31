@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import SearchButton from "./SearchButton";
 import MainWeatherTab from "./MainWeatherTab";
-import GetInfoButton from "./GetInfoButton";
 import SearchWindow from "./SearchWindow";
+
+const url = {
+  test: 'https://jsonplaceholder.typicode.com/todos/1/posts',
+  main: 'https://api.weatherapi.com/v1/current.json?key=2e40d0c4e5034462948203411222410&q='
+}
+
+const fetchUrl = url.main;
 
 const allRegionsJson = require("./allRegions");
 
 export default function App() {
-  const [weatherData, setWeatherData] = useState();
+  const [weatherData, setWeatherData] = useState(null);
   const [searchVisibility, setSearchVisibility] = useState(false);
-  const [checkboxValue, setCheckboxValue] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [currentRegion, setCurrentRegion] = useState("");
 
@@ -27,28 +32,9 @@ export default function App() {
       ? allRegionsFlat.filter((region) => region.toLowerCase().startsWith(searchValue))
       : [];
 
-  async function fetchWeatherData(q) {
-
-    const weatherData = await fetch(`https://api.weatherapi.com/v1/current.json?key=2e40d0c4e5034462948203411222410&q=${q}`)
-
-    return weatherData.json()
-  }   
-
   function getSearchVisibility() {
     const visible = searchVisibility ? false : true;
     setSearchVisibility(visible);
-  }
-
-  function getCheckboxValue(e) {
-    const value = e.target.checked;
-    setCheckboxValue(value);
-  }
-
-  function getWeatherData(e) {
-    e.preventDefault();
-
-    const data = checkboxValue ? fetchWeatherData(currentRegion).then((data) => setWeatherData(data)) : 0;
-    setWeatherData(data);
   }
 
   function getSearchValue(e) {
@@ -68,8 +54,6 @@ export default function App() {
   console.log(filteredRegions);
   console.log(`weatherData: ${weatherData}`, weatherData)
   console.log(`Search state: ${searchVisibility}`);
-  console.log(allRegionsFlat);
-  console.log(checkboxValue);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({coords:{
@@ -79,18 +63,34 @@ export default function App() {
     })
   }, [])
 
+  useEffect(() => {
+    (() => {
+    fetch(`${fetchUrl}${currentRegion}`)
+    .then(response => {
+      if (response.status === 200) {
+        return response.json()
+      }
+      if (response.status === 404) {
+        throw new Error('Not found')
+      }
+    })
+    .then(data => setWeatherData(data))
+    .catch(error => console.log(error))
+    })()
+  }, [currentRegion])
+
   return (
     <>
       <div className="top-section-container">
         <MainWeatherTab
           className={"main-weather-tab"}
           buttonComponent={<SearchButton onClickFunc={getSearchVisibility} />}
-          weatherIcon={current.condition.icon}
-          temperature={current.temp_c}
-          weatherCondition={current.condition.text}
-          weatherConditionIcon={current.condition.icon}
-          location={location.name + ", " + location.country}
-          lastUpdateDate={current.last_updated}
+          weatherIcon={ weatherData ? weatherData.current.condition.icon.replace('64x64', '128x128') : ''}
+          temperature={ weatherData ? weatherData.current.temp_c : ''}
+          weatherCondition={ weatherData ? weatherData.current.condition.text : ''}  
+          weatherConditionIcon={ weatherData ? weatherData.current.condition.icon : ''}
+          location={ weatherData ? weatherData.location.name + ", " + weatherData.location.country : ''}
+          lastUpdateDate={ weatherData ? weatherData.current.last_updated : ''}
         />
       </div>
       {searchVisibility ? (
@@ -101,7 +101,6 @@ export default function App() {
           onClickRegion={getRegionValue}
         />
       ) : null}
-      <GetInfoButton onClickCheckboxFunc={getCheckboxValue} onClickButtonFunc={getWeatherData} />
     </>
   );
 }
