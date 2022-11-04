@@ -2,12 +2,7 @@ import React from "react";
 
 export default function SearchWindow({ foundedCountriesList, onClickFunc, onChangeFunc, onClickRegion }) {
   const jsxFoundedCountries = foundedCountriesList.map((country) => (
-    <button
-      className="region-button"
-      key={country}
-      value={country.toLowerCase()}
-      onClick={onClickRegion}
-    >
+    <button className="region-button" key={country} value={country.toLowerCase()} onClick={onClickRegion}>
       {country}
     </button>
   ));
@@ -46,7 +41,7 @@ export default function SearchWindow({ foundedCountriesList, onClickFunc, onChan
         className="inner-window"
         style={{
           display: "flex",
-          overflow: 'scroll',
+          overflow: "hidden",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
@@ -68,19 +63,21 @@ export default function SearchWindow({ foundedCountriesList, onClickFunc, onChan
             maxWidth: "450px",
             fontSize: "20px",
             margin: "0 auto",
-            marginBottom: jsxFoundedCountries.length === 0 ? '0' : '25px',
+            marginBottom: jsxFoundedCountries.length === 0 ? "0" : "25px",
             padding: "10px 20px",
             borderRadius: "15px",
             color: "black",
           }}
         />
-        <div style={{
-          display: 'flex',
-          width: '100%',
-          gap: '15px',
-          flexDirection: 'column',
-          overflow: 'scroll',
-        }}>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            gap: "15px",
+            flexDirection: "column",
+            overflow: "hidden",
+          }}
+        >
           {jsxFoundedCountries}
         </div>
       </div>
