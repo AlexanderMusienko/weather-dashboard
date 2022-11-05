@@ -93,7 +93,7 @@ export default function App() {
       const isDay = weatherData.current.is_day;
 
       const weatherIcon = isDay
-        ? weatherDaySVG.filter((svgName) => svgName.startsWith(weatherCode))
+        ? weatherDaySVG.filter((svgName) => svgName.includes(weatherCode))
         : weatherNightSVG.filter((svgName) => svgName.includes(weatherCode));
 
       setWeatherIcon(weatherIcon[0] ? weatherIcon[0] : notAvailable)
