@@ -17,7 +17,7 @@ export default function MainWeatherTab({ weatherData, className, buttonComponent
       {buttonComponent}
       <img alt="weather" src={weatherIcon} draggable="false" style={{ maxWidth: "128px" }}></img>
       <span style={{ fontSize: "70px" }}>
-        {temp_c}
+        {Math.round(temp_c)}
         <sup style={{ fontSize: "36px", fontWeight: "600" }}>°C</sup>
       </span>
 

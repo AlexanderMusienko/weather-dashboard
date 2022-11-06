@@ -4,6 +4,8 @@ import SearchButton from "./SearchButton";
 import MainWeatherTab from "./MainWeatherTab";
 import SearchWindow from "./SearchWindow";
 import notAvailable from './icons/not-available.svg';
+import WindStatus from "./WindStatus";
+import UVIndex from "./UVIndex";
 
 const actualKey = "2e40d0c4e5034462948203411222410";
 
@@ -64,8 +66,8 @@ export default function App() {
   }
 
   console.log(`Current region: ${currentRegion}`);
-  console.log(searchValue);
-  console.log(filteredRegions);
+  console.log('Search value:', searchValue);
+  console.log('Filtered Regions:', filteredRegions);
   console.log(`weatherData: ${weatherData}`, weatherData);
   console.log(`Search state: ${searchVisibility}`);
 
@@ -112,6 +114,23 @@ export default function App() {
             weatherIcon={weatherIcon}
           />
         )}
+        <div className='todays-highlight-container'>
+          <div className="header-wrapper"><h4>Today's highlight</h4></div>
+          <div className="item-container">
+
+            <div className="diagram-item">
+              <WindStatus weatherData={weatherData}/>
+            </div>
+
+            <div className="diagram-item">
+              <UVIndex />
+            </div>
+
+            <div className="diagram-item">
+
+            </div>
+          </div>
+        </div>
       </div>
       {searchVisibility ? (
         <SearchWindow
