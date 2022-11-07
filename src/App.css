@@ -90,10 +90,10 @@ button {
 }
 
 .diagram-item {
-    min-width: 200px;
-    max-width: 230px;
+    width: 230px;
+    max-height: 230px;
     background-color: #00000040;
     border-radius: 15px;
-    padding: 20px 15px;
+    padding: 20px 10px;
 }
 
