@@ -90,10 +90,22 @@ button {
 }
 
 .diagram-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 230px;
-    max-height: 230px;
+    max-height: 240px;
     background-color: #00000040;
     border-radius: 15px;
     padding: 20px 10px;
 }
 
+.uv-index-gauge-container {
+    position: relative;
+}
+
+.uv-index-item {
+    text-align: center;
+    font-size: 32px;
+    color: aliceblue;
+}

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BarChart,
   BarSeries,
+  Count,
   Gridline,
   GridlineSeries,
   LinearXAxis,
@@ -33,7 +34,13 @@ const data = [
   { key: 19, data: 3 },
 ];
 
-export default function WindStatus({ className, weatherData }) {
+export default function WindStatus({ weatherData }) {
+  const [currentWindSpeedFormat, setCurrentWindSpeedFormat] = useState("km/h");
+
+  function changeWindSpeedFormat() {
+    currentWindSpeedFormat === "km/h" ? setCurrentWindSpeedFormat("m/s") : setCurrentWindSpeedFormat("km/h");
+  }
+
   const noData = {
     current: {
       last_updated: null,
@@ -45,7 +52,9 @@ export default function WindStatus({ className, weatherData }) {
     current: { last_updated, wind_kph },
   } = weatherData ? weatherData : noData;
 
-  const currentTime = new Date(last_updated).toLocaleTimeString([], {timeStyle: 'short'})
+  const currentWindSpeed = currentWindSpeedFormat === "km/h" ? wind_kph : wind_kph * (5 / 18);
+
+  const currentTime = new Date(last_updated).toLocaleTimeString([], { timeStyle: "short" });
 
   console.log("Current time:", currentTime);
 
@@ -56,36 +65,25 @@ export default function WindStatus({ className, weatherData }) {
       <LineChart
         containerClassName="wind-line-chart-container"
         data={data}
-        width={200}
         height={50}
         gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
         center={true}
         yAxis={
-          <LinearYAxis
-            tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
-            axisLine={null}
-          />
+          <LinearYAxis tickSeries={<LinearYAxisTickSeries line={null} label={null} />} axisLine={null} />
         }
         xAxis={
-          <LinearXAxis
-            tickSeries={<LinearXAxisTickSeries line={null} label={null} />}
-            axisLine={null}
-          />
+          <LinearXAxis tickSeries={<LinearXAxisTickSeries line={null} label={null} />} axisLine={null} />
         }
       />
 
       <BarChart
         containerClassName="wind-bar-chart-container"
         data={data}
-        width={200}
         height={25}
         series={<BarSeries padding={0.6} colorScheme={"#757575"} />}
         gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
         yAxis={
-          <LinearYAxis
-            tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
-            axisLine={null}
-          />
+          <LinearYAxis tickSeries={<LinearYAxisTickSeries line={null} label={null} />} axisLine={null} />
         }
         xAxis={
           <LinearXAxis
@@ -100,17 +98,15 @@ export default function WindStatus({ className, weatherData }) {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "end",
+          alignItems: "baseline",
         }}
       >
-        <div>
-          <span style={{ fontSize: "32px" }}>{wind_kph}</span>
-          <span style={{ fontSize: "12px" }}>km/h</span>
-        </div>
-
-        <span style={{ fontSize: "16px" }}>
-          {weatherData ? currentTime : null}
+        <span onClick={changeWindSpeedFormat} style={{ fontSize: "32px", cursor: "pointer" }}>
+          <Count to={currentWindSpeed} />
+          <span style={{ fontSize: "12px" }}> {currentWindSpeedFormat === "km/h" ? "km/h" : "m/s"}</span>
         </span>
+
+        <span style={{ fontSize: "16px" }}>{weatherData ? currentTime : null}</span>
       </div>
     </>
   );

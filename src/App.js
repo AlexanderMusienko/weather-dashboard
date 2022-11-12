@@ -3,11 +3,11 @@ import "./App.css";
 import SearchButton from "./SearchButton";
 import MainWeatherTab from "./MainWeatherTab";
 import SearchWindow from "./SearchWindow";
-import notAvailable from './icons/not-available.svg';
+import notAvailable from "./icons/not-available.svg";
 import WindStatus from "./WindStatus";
 import UVIndex from "./UVIndex";
 
-const actualKey = "2e40d0c4e5034462948203411222410";
+const actualKey = "0afe1fabd8754c45bd1204815221111";
 
 const weatherDayIcons = require.context("./icons/weather_day", true, /\.svg$/);
 const weatherNightIcons = require.context("./icons/weather_night", true, /\.svg$/);
@@ -66,8 +66,8 @@ export default function App() {
   }
 
   console.log(`Current region: ${currentRegion}`);
-  console.log('Search value:', searchValue);
-  console.log('Filtered Regions:', filteredRegions);
+  console.log("Search value:", searchValue);
+  console.log("Filtered Regions:", filteredRegions);
   console.log(`weatherData: ${weatherData}`, weatherData);
   console.log(`Search state: ${searchVisibility}`);
 
@@ -91,14 +91,14 @@ export default function App() {
 
   useEffect(() => {
     if (weatherData) {
-      const weatherCode = weatherData.current.condition.code;  // https://www.weatherapi.com/docs/weather_conditions.json 
+      const weatherCode = weatherData.current.condition.code; // https://www.weatherapi.com/docs/weather_conditions.json
       const isDay = weatherData.current.is_day;
 
       const weatherIcon = isDay
         ? weatherDaySVG.filter((svgName) => svgName.includes(weatherCode))
         : weatherNightSVG.filter((svgName) => svgName.includes(weatherCode));
 
-      setWeatherIcon(weatherIcon[0] ? weatherIcon[0] : notAvailable)
+      setWeatherIcon(weatherIcon[0] ? weatherIcon[0] : notAvailable);
       console.log(weatherIcon, "weatherCode:", weatherCode, "isDay:", isDay);
     }
   }, [weatherData]);
@@ -114,21 +114,20 @@ export default function App() {
             weatherIcon={weatherIcon}
           />
         )}
-        <div className='todays-highlight-container'>
-          <div className="header-wrapper"><h4>Today's highlight</h4></div>
+        <div className="todays-highlight-container">
+          <div className="header-wrapper">
+            <h4>Today's highlight</h4>
+          </div>
           <div className="item-container">
-
             <div className="diagram-item">
-              <WindStatus weatherData={weatherData}/>
+              <WindStatus weatherData={weatherData} />
             </div>
 
-            <div className="diagram-item">
-              <UVIndex />
+            <div style={{ position: "relative" }} className="diagram-item">
+              <UVIndex weatherData={weatherData} />
             </div>
 
-            <div className="diagram-item">
-
-            </div>
+            <div className="diagram-item"></div>
           </div>
         </div>
       </div>
