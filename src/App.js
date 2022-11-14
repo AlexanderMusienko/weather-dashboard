@@ -8,8 +8,6 @@ import WindStatus from "./WindStatus";
 import UVIndex from "./UVIndex";
 import OneDataTab from "./OneDataTab";
 
-const actualKey = "0afe1fabd8754c45bd1204815221111";
-
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
 const mainIconsSvg = mainIconsPaths.map((path) => mainIcons(path));
@@ -32,10 +30,12 @@ console.log(weatherDaySVG);
 console.log(weatherNightSVG);
 
 const allRegionsJson = require("./allRegions");
+const actualKey = "0afe1fabd8754c45bd1204815221111";
 
 const url = {
   test: "https://jsonplaceholder.typicode.com/todos/1/posts",
-  main: `https://api.weatherapi.com/v1/current.json?key=${actualKey}&q=`,
+  main: `https://api.weatherapi.com/v1/current.json?`,
+  astro: `http://api.weatherapi.com/v1/astronomy.json?`,
 };
 
 const fetchUrl = url.main;
@@ -96,7 +96,7 @@ export default function App() {
   useEffect(() => {
     const fetchWeather = async () => {
       if (currentRegion) {
-        const data = await fetch(`${fetchUrl}${currentRegion}`);
+        const data = await fetch(`${fetchUrl}key=${actualKey}&q=${currentRegion}&aqi=yes`);
 
         const json = await data.json();
         setWeatherData(json);
