@@ -60,7 +60,7 @@ export default function WindStatus({ weatherData }) {
 
   return (
     <>
-      <h5 style={{ marginBottom: "35px" }}>Wind status</h5>
+      <h5 style={{ marginBottom: "35px" }}>Wind Status</h5>
 
       <LineChart
         containerClassName="wind-line-chart-container"
@@ -102,7 +102,7 @@ export default function WindStatus({ weatherData }) {
         }}
       >
         <span onClick={changeWindSpeedFormat} style={{ fontSize: "32px", cursor: "pointer" }}>
-          <Count to={currentWindSpeed} />
+          <Count decimalPlaces={1} to={currentWindSpeed} />
           <span style={{ fontSize: "12px" }}> {currentWindSpeedFormat === "km/h" ? "km/h" : "m/s"}</span>
         </span>
 

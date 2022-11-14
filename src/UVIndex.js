@@ -1,15 +1,15 @@
 import React from "react";
-import { Count, RadialGauge, RadialGaugeOuterArc, RadialGaugeSeries } from "reaviz";
+import { Count, RadialGauge, RadialGaugeArc, RadialGaugeSeries } from "reaviz";
 
 export default function UVIndex({ weatherData }) {
   const uvValue = weatherData ? weatherData.current.uv : 0;
 
   return (
     <>
-      <h5>UV index</h5>
+      <h5>UV Index</h5>
       <div style={{ height: "130px" }}>
         <RadialGauge
-          data={[{ key: "UV index", data: uvValue }]}
+          data={[{ key: "UV index", data: uvValue}]}
           minValue={0}
           maxValue={13}
           height={230}
@@ -18,8 +18,8 @@ export default function UVIndex({ weatherData }) {
               arcWidth={30}
               label={null}
               valueLabel={null}
-              colorScheme={"#0083ff"}
-              outerArc={<RadialGaugeOuterArc color={"#c4c4c430"} />}
+              colorScheme={(data) => {return `hsl(${220 + (data.data * 10)},90%,50%)`}} // hsl(220,50%,50%)
+              outerArc={<RadialGaugeArc disabled={true} color={"#c4c4c430"} />}
             />
           }
           startAngle={-Math.PI / 2}

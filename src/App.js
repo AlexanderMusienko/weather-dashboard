@@ -116,7 +116,7 @@ export default function App() {
         )}
         <div className="todays-highlight-container">
           <div className="header-wrapper">
-            <h4>Today's highlight</h4>
+            <h4>Today's Highlight</h4>
           </div>
           <div className="item-container">
             <div className="diagram-item">
