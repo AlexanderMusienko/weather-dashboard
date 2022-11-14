@@ -6,8 +6,20 @@ import SearchWindow from "./SearchWindow";
 import notAvailable from "./icons/not-available.svg";
 import WindStatus from "./WindStatus";
 import UVIndex from "./UVIndex";
+import OneDataTab from "./OneDataTab";
 
 const actualKey = "0afe1fabd8754c45bd1204815221111";
+
+const mainIcons = require.context("./icons", false, /\.svg$/);
+const mainIconsPaths = mainIcons.keys();
+const mainIconsSvg = mainIconsPaths.map((path) => mainIcons(path));
+
+const waterDropIcon = mainIconsSvg.filter((path) => path.includes("water-drop-icon"))[0];
+const visibilityIcon = mainIconsSvg.filter((path) => path.includes("visibility-icon"))[0];
+const thermometerIcon = mainIconsSvg.filter((path) => path.includes("thermometer-icon"))[0];
+
+console.log(waterDropIcon);
+console.log(mainIconsSvg);
 
 const weatherDayIcons = require.context("./icons/weather_day", true, /\.svg$/);
 const weatherNightIcons = require.context("./icons/weather_night", true, /\.svg$/);
@@ -34,6 +46,10 @@ export default function App() {
   const [weatherIcon, setWeatherIcon] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [currentRegion, setCurrentRegion] = useState("");
+
+  const {
+    current: { humidity, vis_km, feelslike_c },
+  } = weatherData ? weatherData : { current: { humidity: 0, vis_km: 0, feelslike_c: 0 } };
 
   const allRegions = JSON.parse(JSON.stringify(allRegionsJson));
   const allRegionsArr = [];
@@ -128,6 +144,29 @@ export default function App() {
             </div>
 
             <div className="diagram-item"></div>
+          </div>
+          <div className="item-container">
+            <OneDataTab
+              containerClassName={"one-data-item"}
+              header={"Humidity"}
+              dataValue={humidity}
+              unitValue={"%"}
+              icon={waterDropIcon}
+            />
+            <OneDataTab
+              containerClassName={"one-data-item"}
+              header={"Visibility"}
+              dataValue={vis_km}
+              unitValue={"km"}
+              icon={visibilityIcon}
+            />
+            <OneDataTab
+              containerClassName={"one-data-item"}
+              header={"Feels like"}
+              dataValue={feelslike_c}
+              unitValue={"°C"}
+              icon={thermometerIcon}
+            />
           </div>
         </div>
       </div>

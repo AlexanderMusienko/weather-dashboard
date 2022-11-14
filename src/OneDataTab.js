@@ -1,16 +1,17 @@
 import React from "react";
 import { Count } from "reaviz";
 
-export default function OneDataTab({ header, dataValue, unitValue, additionalInfo }) {
+export default function OneDataTab({ header, dataValue, unitValue, icon, containerClassName }) {
   return (
-    <div style={{ backgroundColor: "#00000070", padding: "10px", width: "230px", borderRadius: "15px" }}>
+    <div className={containerClassName}>
       <h6 style={{ marginBottom: "10px" }}>{header}</h6>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "top" }}>
-        <span style={{ fontSize: "25px" }}>
-          <Count to={dataValue} />
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: "15px" }}>
+          <Count className="one-data-value" to={dataValue} />
+          {' '}
           {unitValue}
         </span>
-        <span style={{ fontSize: "12px", wordWrap: "normal", maxWidth: "50%" }}>{additionalInfo}</span>
+        <img style={{height: '30px'}} src={icon} alt={header}></img>
       </div>
     </div>
   );
