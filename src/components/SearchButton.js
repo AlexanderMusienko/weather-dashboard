@@ -1,5 +1,5 @@
 import React from "react";
-import searchIcon from "./icons/search.svg";
+import searchIcon from "../icons/search.svg";
 
 export default function SearchButton(props) {
   return (

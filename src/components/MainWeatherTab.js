@@ -1,6 +1,6 @@
 import React from "react";
-import locationIcon from "./icons/location.svg";
-import calendarIcon from "./icons/calendar.svg";
+import locationIcon from "../icons/location.svg";
+import calendarIcon from "../icons/calendar.svg";
 
 export default function MainWeatherTab({ weatherData, className, buttonComponent, weatherIcon }) {
   const {

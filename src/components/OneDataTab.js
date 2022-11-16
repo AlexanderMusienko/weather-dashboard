@@ -11,7 +11,7 @@ export default function OneDataTab({ header, dataValue, unitValue, icon, contain
           {' '}
           {unitValue}
         </span>
-        <img style={{height: '30px'}} src={icon} alt={header}></img>
+        <img style={{height: '30px'}} src={icon} alt={header} draggable={false}/>
       </div>
     </div>
   );

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import SearchButton from "./SearchButton";
-import MainWeatherTab from "./MainWeatherTab";
-import SearchWindow from "./SearchWindow";
+import SearchButton from "./components/SearchButton";
+import MainWeatherTab from "./components/MainWeatherTab";
+import SearchWindow from "./components/SearchWindow";
 import notAvailable from "./icons/not-available.svg";
-import WindStatus from "./WindStatus";
-import UVIndex from "./UVIndex";
-import OneDataTab from "./OneDataTab";
+import WindStatus from "./components/WindStatus";
+import UVIndex from "./components/UVIndex";
+import OneDataTab from "./components/OneDataTab";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -111,14 +111,14 @@ export default function App() {
       const isDay = weatherData.current.is_day;
 
       const weatherIcon = isDay
-        ? weatherDaySVG.filter((svgName) => svgName.includes(weatherCode))
-        : weatherNightSVG.filter((svgName) => svgName.includes(weatherCode));
+        ? weatherDaySVG.filter((svgName) => svgName.includes(weatherCode))[0]
+        : weatherNightSVG.filter((svgName) => svgName.includes(weatherCode))[0];
 
-      setWeatherIcon(weatherIcon[0] ? weatherIcon[0] : notAvailable);
+      setWeatherIcon(weatherIcon ? weatherIcon : notAvailable);
       console.log(weatherIcon, "weatherCode:", weatherCode, "isDay:", isDay);
     }
   }, [weatherData]);
-
+  
   return (
     <>
       <div className="top-section-container">
