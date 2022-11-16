@@ -94,12 +94,23 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const currentDate = new Date().toLocaleDateString("fr-CA", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    });
+
     const fetchWeather = async () => {
       if (currentRegion) {
-        const data = await fetch(`${fetchUrl}key=${actualKey}&q=${currentRegion}&aqi=yes`);
+        const weatherData = await fetch(`${fetchUrl}key=${actualKey}&q=${currentRegion}&aqi=yes`);
+        const weatherJson = await weatherData.json();
 
-        const json = await data.json();
-        setWeatherData(json);
+        const astroData = await fetch(`${url.astro}key=${actualKey}&q=${currentRegion}&dt=${currentDate}`);
+        const astroJson = await astroData.json();
+
+        const resultJson = { ...weatherJson, ...astroJson };
+
+        setWeatherData(resultJson);
       }
     };
     fetchWeather().catch((error) => console.log(error));
@@ -118,7 +129,7 @@ export default function App() {
       console.log(weatherIcon, "weatherCode:", weatherCode, "isDay:", isDay);
     }
   }, [weatherData]);
-  
+
   return (
     <>
       <div className="top-section-container">
