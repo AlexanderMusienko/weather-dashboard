@@ -46,11 +46,25 @@ export default function WindStatus({ weatherData }) {
       last_updated: null,
       wind_kph: null,
     },
+    forecast: {
+      forecastday: [{ hour: [{wind_kph: 17.3}] }],
+    },
   };
 
   const {
     current: { last_updated, wind_kph },
+    forecast: {
+      forecastday: [{ hour }],
+    },
   } = weatherData ? weatherData : noData;
+
+  function ejectShortTime(dateString) {
+    return new Date(dateString).toLocaleTimeString([], { timeStyle: "short" });
+  }
+
+  const windDuringDayData = hour ? hour.map((item, i) => {return {key: ejectShortTime(item.time), data: item.wind_kph}}) : null;
+
+  console.log(windDuringDayData);
 
   const currentWindSpeed = currentWindSpeedFormat === "km/h" ? wind_kph : wind_kph * (5 / 18);
 
@@ -64,7 +78,7 @@ export default function WindStatus({ weatherData }) {
 
       <LineChart
         containerClassName="wind-line-chart-container"
-        data={data}
+        data={windDuringDayData}
         height={50}
         gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
         center={true}
@@ -78,7 +92,7 @@ export default function WindStatus({ weatherData }) {
 
       <BarChart
         containerClassName="wind-bar-chart-container"
-        data={data}
+        data={windDuringDayData}
         height={25}
         series={<BarSeries padding={0.6} colorScheme={"#757575"} />}
         gridlines={<GridlineSeries line={<Gridline direction={null} />} />}

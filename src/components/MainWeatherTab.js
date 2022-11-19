@@ -1,8 +1,18 @@
 import React from "react";
 import locationIcon from "../icons/location.svg";
 import calendarIcon from "../icons/calendar.svg";
+import notAvailable from "../icons/not-available.svg";
 
 export default function MainWeatherTab({ weatherData, className, buttonComponent, weatherIcon }) {
+  const noData = {
+    current: {
+      temp_c: null,
+      last_updated: null,
+      condition: { text: null, icon: null },
+    },
+    location: { name: null, country: null },
+  };
+
   const {
     current: {
       temp_c,
@@ -10,12 +20,17 @@ export default function MainWeatherTab({ weatherData, className, buttonComponent
       condition: { text, icon },
     },
     location: { name, country },
-  } = weatherData;
+  } = weatherData ? weatherData : noData;
 
   return (
     <div className={className}>
       {buttonComponent}
-      <img alt="weather" src={weatherIcon} draggable="false" style={{ maxWidth: "128px" }}></img>
+      <img
+        alt="weather"
+        src={weatherIcon ? weatherIcon : notAvailable}
+        draggable="false"
+        style={{ maxWidth: "128px" }}
+      />
       <span style={{ fontSize: "70px" }}>
         {Math.round(temp_c)}
         <sup style={{ fontSize: "36px", fontWeight: "600" }}>°C</sup>

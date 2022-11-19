@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import notAvailable from "./icons/not-available.svg";
+
 import SearchButton from "./components/SearchButton";
 import MainWeatherTab from "./components/MainWeatherTab";
 import SearchWindow from "./components/SearchWindow";
-import notAvailable from "./icons/not-available.svg";
 import WindStatus from "./components/WindStatus";
 import UVIndex from "./components/UVIndex";
 import OneDataTab from "./components/OneDataTab";
@@ -36,12 +37,14 @@ const url = {
   test: "https://jsonplaceholder.typicode.com/todos/1/posts",
   main: `https://api.weatherapi.com/v1/current.json?`,
   astro: `http://api.weatherapi.com/v1/astronomy.json?`,
+  forecast: `http://api.weatherapi.com/v1/forecast.json?`
 };
 
 const fetchUrl = url.main;
 
 export default function App() {
   const [weatherData, setWeatherData] = useState(null);
+  const [forecastData, setForecastData] = useState(null);
   const [searchVisibility, setSearchVisibility] = useState(false);
   const [weatherIcon, setWeatherIcon] = useState("");
   const [searchValue, setSearchValue] = useState("");
@@ -85,6 +88,7 @@ export default function App() {
   console.log("Search value:", searchValue);
   console.log("Filtered Regions:", filteredRegions);
   console.log(`weatherData: ${weatherData}`, weatherData);
+  console.log('forecastData:', forecastData);
   console.log(`Search state: ${searchVisibility}`);
 
   useEffect(() => {
@@ -102,7 +106,7 @@ export default function App() {
 
     const fetchWeather = async () => {
       if (currentRegion) {
-        const weatherData = await fetch(`${fetchUrl}key=${actualKey}&q=${currentRegion}&aqi=yes`);
+        const weatherData = await fetch(`${url.forecast}key=${actualKey}&q=${currentRegion}&days=1&aqi=yes`);
         const weatherJson = await weatherData.json();
 
         const astroData = await fetch(`${url.astro}key=${actualKey}&q=${currentRegion}&dt=${currentDate}`);
@@ -111,6 +115,11 @@ export default function App() {
         const resultJson = { ...weatherJson, ...astroJson };
 
         setWeatherData(resultJson);
+
+        // fetch(`${url.forecast}key=${actualKey}&q=${currentRegion}&days=1`)
+        // .then(response => response.json())
+        // .then(data => setForecastData(data))
+        // .catch(err => console.log())
       }
     };
     fetchWeather().catch((error) => console.log(error));
@@ -125,7 +134,7 @@ export default function App() {
         ? weatherDaySVG.filter((svgName) => svgName.includes(weatherCode))[0]
         : weatherNightSVG.filter((svgName) => svgName.includes(weatherCode))[0];
 
-      setWeatherIcon(weatherIcon ? weatherIcon : notAvailable);
+      setWeatherIcon(notAvailable && weatherIcon);
       console.log(weatherIcon, "weatherCode:", weatherCode, "isDay:", isDay);
     }
   }, [weatherData]);
@@ -133,14 +142,12 @@ export default function App() {
   return (
     <>
       <div className="top-section-container">
-        {weatherData && (
-          <MainWeatherTab
-            className={"main-weather-tab"}
-            buttonComponent={<SearchButton onClickFunc={getSearchVisibility} />}
-            weatherData={weatherData}
-            weatherIcon={weatherIcon}
-          />
-        )}
+        <MainWeatherTab
+          className={"main-weather-tab"}
+          buttonComponent={<SearchButton onClickFunc={getSearchVisibility} />}
+          weatherData={weatherData}
+          weatherIcon={weatherIcon}
+        />
         <div className="todays-highlight-container">
           <div className="header-wrapper">
             <h4>Today's Highlight</h4>
@@ -154,7 +161,9 @@ export default function App() {
               <UVIndex weatherData={weatherData} />
             </div>
 
-            <div className="diagram-item"></div>
+            <div className="diagram-item">
+              
+            </div>
           </div>
           <div className="item-container">
             <OneDataTab
@@ -181,14 +190,14 @@ export default function App() {
           </div>
         </div>
       </div>
-      {searchVisibility ? (
+      {searchVisibility && (
         <SearchWindow
           foundedCountriesList={filteredRegions}
           onChangeFunc={getSearchValue}
           onClickFunc={getSearchVisibility}
           onClickRegion={getRegionValue}
         />
-      ) : null}
+      )}
     </>
   );
 }
