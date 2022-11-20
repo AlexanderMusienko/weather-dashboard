@@ -8,6 +8,7 @@ import SearchWindow from "./components/SearchWindow";
 import WindStatus from "./components/WindStatus";
 import UVIndex from "./components/UVIndex";
 import OneDataTab from "./components/OneDataTab";
+import AirQuality from "./components/AirQuality";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -162,7 +163,7 @@ export default function App() {
             </div>
 
             <div className="diagram-item">
-              
+              <AirQuality weatherData={weatherData}/>
             </div>
           </div>
           <div className="item-container">
