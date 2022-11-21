@@ -134,5 +134,33 @@ button {
 }
 
 .one-data-value {
-    font-size: 25px;
+  font-size: 25px;
+}
+
+.bottom-section-container {
+  margin: 25px;
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+}
+
+.forecast-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow: scroll;
+  background-color: #00000070;
+  padding: 20px;
+  width: 30%;
+  gap: 15px;
+  border-radius: 25px;
+  scrollbar-width: none; /* Firefox 64 */
+}
+
+.forecast-container::-webkit-scrollbar {
+  display: none;
+}
+
+.forecast-container:scrollbar {
+  display: none;
 }

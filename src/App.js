@@ -9,6 +9,7 @@ import WindStatus from "./components/WindStatus";
 import UVIndex from "./components/UVIndex";
 import OneDataTab from "./components/OneDataTab";
 import AirQuality from "./components/AirQuality";
+import WeatherForecast from "./components/WeatherForecast";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -117,10 +118,10 @@ export default function App() {
 
         setWeatherData(resultJson);
 
-        // fetch(`${url.forecast}key=${actualKey}&q=${currentRegion}&days=1`)
-        // .then(response => response.json())
-        // .then(data => setForecastData(data))
-        // .catch(err => console.log())
+        fetch(`${url.forecast}key=${actualKey}&q=${currentRegion}&days=7`)
+        .then(response => response.json())
+        .then(data => setForecastData(data))
+        .catch(err => console.log())
       }
     };
     fetchWeather().catch((error) => console.log(error));
@@ -189,6 +190,11 @@ export default function App() {
               icon={thermometerIcon}
             />
           </div>
+        </div>
+      </div>
+      <div className="bottom-section-container">
+        <div className="forecast-container">
+          <WeatherForecast forecastData={forecastData}/>
         </div>
       </div>
       {searchVisibility && (
