@@ -24,7 +24,7 @@ export default function WindStatus({ weatherData }) {
       wind_kph: null,
     },
     forecast: {
-      forecastday: [{ hour: [{wind_kph: 17.3}] }],
+      forecastday: [{ hour: [{ wind_kph: 17.3 }] }],
     },
   };
 
@@ -61,21 +61,15 @@ export default function WindStatus({ weatherData }) {
         <LineChart
           containerClassName="wind-line-chart-container"
           data={windDuringDayData}
-          width={'90%'}
+          width={"90%"}
           height={50}
           gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
           center={true}
           yAxis={
-            <LinearYAxis
-              tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
-              axisLine={null}
-            />
+            <LinearYAxis tickSeries={<LinearYAxisTickSeries line={null} label={null} />} axisLine={null} />
           }
           xAxis={
-            <LinearXAxis
-              tickSeries={<LinearXAxisTickSeries line={null} label={null} />}
-              axisLine={null}
-            />
+            <LinearXAxis tickSeries={<LinearXAxisTickSeries line={null} label={null} />} axisLine={null} />
           }
         />
 
@@ -86,10 +80,7 @@ export default function WindStatus({ weatherData }) {
           series={<BarSeries padding={0.6} />}
           gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
           yAxis={
-            <LinearYAxis
-              tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
-              axisLine={null}
-            />
+            <LinearYAxis tickSeries={<LinearYAxisTickSeries line={null} label={null} />} axisLine={null} />
           }
           xAxis={
             <LinearXAxis
@@ -107,20 +98,12 @@ export default function WindStatus({ weatherData }) {
           alignItems: "baseline",
         }}
       >
-        <span
-          onClick={changeWindSpeedFormat}
-          style={{ fontSize: "32px", cursor: "pointer" }}
-        >
+        <span onClick={changeWindSpeedFormat} style={{ fontSize: "32px", cursor: "pointer" }}>
           <Count decimalPlaces={1} to={currentWindSpeed} />
-          <span style={{ fontSize: "12px" }}>
-            {" "}
-            {currentWindSpeedFormat === "km/h" ? "km/h" : "m/s"}
-          </span>
+          <span style={{ fontSize: "12px" }}> {currentWindSpeedFormat === "km/h" ? "km/h" : "m/s"}</span>
         </span>
 
-        <span style={{ fontSize: "16px" }}>
-          {weatherData ? currentTime : null}
-        </span>
+        <span style={{ fontSize: "16px" }}>{weatherData ? currentTime : null}</span>
       </div>
     </>
   );

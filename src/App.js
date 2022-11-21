@@ -194,7 +194,7 @@ export default function App() {
       </div>
       <div className="bottom-section-container">
         <div className="forecast-container">
-          <WeatherForecast forecastData={forecastData}/>
+          <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG}/>
         </div>
       </div>
       {searchVisibility && (
