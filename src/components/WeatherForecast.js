@@ -4,7 +4,7 @@ export default function WeatherForecast({ forecastData }) {
 
     const noData = {
         forecast: {
-          forecastDay: [
+          forecastday: [
             {
               date: 2022-11-12,
               day: {
@@ -35,25 +35,16 @@ export default function WeatherForecast({ forecastData }) {
 
   const {
     forecast: {
-      forecastDay: [
-        {
-          date,
-          day: {
-            mintemp_c,
-            maxtemp_c,
-            condition: { code },
-          },
-        },
-      ],
+      forecastday
     },
   } = forecastData ? forecastData : noData;
 
   const card = (tempMax, tempMin, dateDM, weekday) => {
-    <div
+   return (<div
       style={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
+        gap: "10px",
         alignItems: "center",
       }}
     >
@@ -64,18 +55,21 @@ export default function WeatherForecast({ forecastData }) {
           alignItems: "center",
         }}
       >
-        <img style={{ width: "45px", marginRight: "5px" }} /> 
-        <span style={{ fontSize: "20px" }}>
+        <img style={{ width: "45px", height: '45px', marginRight: "5px" }} />  {/* icon prop */}
+        <span style={{ fontSize: "20px", width: '70px' }}>
           {tempMax}/<span style={{ fontSize: "15px" }}>{tempMin}</span>
         </span>
       </div>
 
       <span style={{ fontSize: "15px" }}>{dateDM}</span>
       <span style={{ fontSize: "15px" }}>{weekday}</span>
-    </div>;
+    </div>
+    )
   };
 
-  const mappedCards = forecastDay.map(() => card(mintemp_c, maxtemp_c, date, 'Tuesday'));
+  const mappedCards = forecastday.map((item) => card(item.day.maxtemp_c, item.day.mintemp_c, new Date(item.date).toLocaleDateString('EN-us', {day: 'numeric', month: 'long'}), 'Tuesday'));
 
-  return <>{mappedCards}</>;
+  return <>
+  {mappedCards}
+  </>;
 }
