@@ -14,7 +14,7 @@ export default function AirQuality({ weatherData }) {
 
   const {
     current: {
-      air_quality: { co, "us-epa-index": usEpaIndex, no2 },
+      air_quality: { co, "us-epa-index": usEpaIndex, no2, o3, so2 },
     },
   } = weatherData || noData;
 

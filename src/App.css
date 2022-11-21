@@ -82,19 +82,23 @@ button {
   margin-bottom: 15px;
 }
 
+.wind-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .wind-line-chart-container {
-  padding-right: 10px;
-  margin-bottom: 10px;
+  
 }
 
 .wind-bar-chart-container {
-  margin-bottom: 20px;
+  
 }
 
 .item-container {
   display: flex;
   gap: 15px;
-  margin-bottom: 15px;
 }
 
 .diagram-item {

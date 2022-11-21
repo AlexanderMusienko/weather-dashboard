@@ -55,49 +55,51 @@ export default function WindStatus({ weatherData }) {
 
   return (
     <>
-      <h5 style={{ marginBottom: "35px" }}>Wind Status</h5>
+      <h5 style={{}}>Wind Status</h5>
 
-      <LineChart
-        containerClassName="wind-line-chart-container"
-        data={windDuringDayData}
-        height={50}
-        gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
-        center={true}
-        yAxis={
-          <LinearYAxis
-            tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
-            axisLine={null}
-          />
-        }
-        xAxis={
-          <LinearXAxis
-            tickSeries={<LinearXAxisTickSeries line={null} label={null} />}
-            axisLine={null}
-          />
-        }
-      />
+      <div className="wind-chart-container">
+        <LineChart
+          containerClassName="wind-line-chart-container"
+          data={windDuringDayData}
+          width={'90%'}
+          height={50}
+          gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
+          center={true}
+          yAxis={
+            <LinearYAxis
+              tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
+              axisLine={null}
+            />
+          }
+          xAxis={
+            <LinearXAxis
+              tickSeries={<LinearXAxisTickSeries line={null} label={null} />}
+              axisLine={null}
+            />
+          }
+        />
 
-      <BarChart
-        containerClassName="wind-bar-chart-container"
-        data={windDuringDayData}
-        height={25}
-        series={<BarSeries padding={0.6} />}
-        gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
-        yAxis={
-          <LinearYAxis
-            tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
-            axisLine={null}
-          />
-        }
-        xAxis={
-          <LinearXAxis
-            tickSeries={<LinearXAxisTickSeries line={null} label={null} />}
-            type="category"
-            axisLine={null}
-          />
-        }
-      />
-
+        <BarChart
+          containerClassName="wind-bar-chart-container"
+          data={windDuringDayData}
+          height={25}
+          series={<BarSeries padding={0.6} />}
+          gridlines={<GridlineSeries line={<Gridline direction={null} />} />}
+          yAxis={
+            <LinearYAxis
+              tickSeries={<LinearYAxisTickSeries line={null} label={null} />}
+              axisLine={null}
+            />
+          }
+          xAxis={
+            <LinearXAxis
+              tickSeries={<LinearXAxisTickSeries line={null} label={null} />}
+              type="category"
+              axisLine={null}
+            />
+          }
+        />
+      </div>
       <div
         style={{
           display: "flex",

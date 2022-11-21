@@ -12,7 +12,7 @@ export default function UVIndex({ weatherData }) {
           data={[{ key: "UV index", data: uvValue}]}
           minValue={0}
           maxValue={13}
-          height={230}
+          height={205}
           series={
             <RadialGaugeSeries
               arcWidth={30}

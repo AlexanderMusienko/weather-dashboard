@@ -153,7 +153,7 @@ export default function App() {
           <div className="header-wrapper">
             <h4>Today's Highlight</h4>
           </div>
-          <div className="item-container">
+          <div className="item-container" style={{marginBottom: '15px'}}>
             <div className="diagram-item">
               <WindStatus weatherData={weatherData} />
             </div>
