@@ -1,12 +1,22 @@
-const data = require('./allRegions.json');
+function isDateToday(dateString) {
+    // dateString format - yyyy-mm-dd
 
-console.log(data['United States'].length)
+    function getShortDate(innerDateString) {
+      return new Date(innerDateString).toLocaleDateString("fr-CA", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      })
+    }
+    const comparedDate = getShortDate(dateString)
 
-          // weatherIcon={weatherData?.current ? weatherIcon : ""}
-          // temperature={weatherData?.current ? weatherData.current.temp_c : ""}
-          // weatherCondition={weatherData?.current ? weatherData.current.condition.text : ""}
-          // weatherConditionIcon={weatherData?.current ? weatherData.current.condition.icon : ""}
-          // location={
-          //   weatherData?.current ? weatherData.location.name + ", " + weatherData.location.country : ""
-          // }
-          // lastUpdateDate={weatherData?.current ? weatherData.current.last_updated : ""}
+    console.log(comparedDate)
+
+    const today = getShortDate(new Date())
+
+    console.log(today)
+
+    return (today === comparedDate)
+  } 
+
+  console.log(isDateToday('2022-11-24'))

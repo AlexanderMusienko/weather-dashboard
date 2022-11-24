@@ -118,7 +118,7 @@ export default function App() {
 
         setWeatherData(resultJson);
 
-        fetch(`${url.forecast}key=${actualKey}&q=${currentRegion}&days=7`)
+        fetch(`${url.forecast}key=${actualKey}&q=${currentRegion}&days=8&dt=${new Date().setDate(currentDate + 1)}`)
         .then(response => response.json())
         .then(data => setForecastData(data))
         .catch(err => console.log())

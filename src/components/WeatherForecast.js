@@ -55,7 +55,7 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
             alignItems: "center",
           }}
         >
-          <img src={iconPath} style={{ height: "55px", marginRight: "5px" }} />
+          <img alt="weather" src={iconPath} style={{ height: "55px", marginRight: "5px" }} />
 
           <span style={{ fontSize: "25px" }}>
             {tempMax}/<span style={{ fontSize: "15px" }}>{tempMin}</span>
@@ -68,17 +68,36 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
     );
   };
 
-  const mappedCards = forecastday.map((item) =>
-    card(
-      item.day.maxtemp_c > 0 ? "+" + item.day.maxtemp_c : item.day.maxtemp_c,
-      item.day.mintemp_c > 0 ? "+" + item.day.mintemp_c : item.day.mintemp_c,
-      new Date(item.date).toLocaleDateString("EN-us", {
+  function isDateToday(dateString) {
+    // dateString format - yyyy-mm-dd
+
+    function getShortDate(innerDateString) {
+      return new Date(innerDateString).toLocaleDateString("fr-CA", {
+        year: "numeric",
+        month: "numeric",
         day: "numeric",
-        month: "long",
-      }),
-      weekday[new Date(item.date).getDay()],
-      weatherDaySVG.filter((iconPath) => iconPath.includes(item.day.condition.code))[0]
-    )
+      });
+    }
+    const comparedDate = getShortDate(dateString);
+
+    const today = getShortDate(new Date());
+
+    return today === comparedDate;
+  }
+
+  const mappedCards = forecastday.map(
+    (item) =>
+      !isDateToday(item.date) &&
+      card(
+        item.day.maxtemp_c > 0 ? "+" + item.day.maxtemp_c : item.day.maxtemp_c,
+        item.day.mintemp_c > 0 ? "+" + item.day.mintemp_c : item.day.mintemp_c,
+        new Date(item.date).toLocaleDateString("EN-us", {
+          day: "numeric",
+          month: "long",
+        }),
+        weekday[new Date(item.date).getDay()], // getting num of weekday and putting it in array key
+        weatherDaySVG.filter((iconPath) => iconPath.includes(item.day.condition.code))[0]
+      )
   );
 
   return <>{mappedCards}</>;

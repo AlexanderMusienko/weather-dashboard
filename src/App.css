@@ -121,7 +121,7 @@ button {
 .uv-index-item {
   text-align: center;
   font-size: 32px;
-  color: aliceblue;
+  color: #ffffff;
 }
 
 .one-data-item {
@@ -145,6 +145,7 @@ button {
 }
 
 .forecast-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   max-height: 370px;
