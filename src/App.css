@@ -1,3 +1,7 @@
+:root {
+  --bg-color: #00000070;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -25,7 +29,7 @@ button {
 .main-weather-tab {
   display: flex;
   flex-direction: column;
-  background-color: #00000050;
+  background-color: var(--bg-color);
   background-image: url("./images/sun.svg");
   background-size: cover;
   background-position: center;
@@ -71,7 +75,7 @@ button {
 .todays-highlight-container {
   width: 70%;
   padding: 25px;
-  background-color: #131313;
+  background-color: var(--bg-color);
   background-image: url("./images/sun.svg");
   background-position: center;
   background-size: cover;
@@ -150,7 +154,7 @@ button {
   flex-direction: column;
   max-height: 370px;
   overflow: scroll;
-  background-color: #00000070;
+  background-color: var(--bg-color);
   padding: 20px;
   width: 30%;
   gap: 15px;

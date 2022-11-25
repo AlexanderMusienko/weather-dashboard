@@ -10,6 +10,7 @@ import UVIndex from "./components/UVIndex";
 import OneDataTab from "./components/OneDataTab";
 import AirQuality from "./components/AirQuality";
 import WeatherForecast from "./components/WeatherForecast";
+import TomorrowWeatherHighlight from "./components/TomorrowWeatherHighlight";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -33,13 +34,13 @@ console.log(weatherDaySVG);
 console.log(weatherNightSVG);
 
 const allRegionsJson = require("./allRegions");
-const actualKey = "0afe1fabd8754c45bd1204815221111";
+const actualKey = "407bde1c9d9744038d3175451222511";
 
 const url = {
   test: "https://jsonplaceholder.typicode.com/todos/1/posts",
   main: `https://api.weatherapi.com/v1/current.json?`,
   astro: `http://api.weatherapi.com/v1/astronomy.json?`,
-  forecast: `http://api.weatherapi.com/v1/forecast.json?`
+  forecast: `http://api.weatherapi.com/v1/forecast.json?`,
 };
 
 const fetchUrl = url.main;
@@ -90,7 +91,7 @@ export default function App() {
   console.log("Search value:", searchValue);
   console.log("Filtered Regions:", filteredRegions);
   console.log(`weatherData: ${weatherData}`, weatherData);
-  console.log('forecastData:', forecastData);
+  console.log("forecastData:", forecastData);
   console.log(`Search state: ${searchVisibility}`);
 
   useEffect(() => {
@@ -118,10 +119,14 @@ export default function App() {
 
         setWeatherData(resultJson);
 
-        fetch(`${url.forecast}key=${actualKey}&q=${currentRegion}&days=8&dt=${new Date().setDate(currentDate + 1)}`)
-        .then(response => response.json())
-        .then(data => setForecastData(data))
-        .catch(err => console.log())
+        fetch(
+          `${url.forecast}key=${actualKey}&q=${currentRegion}&days=8&dt=${new Date().setDate(
+            currentDate + 1
+          )}`
+        )
+          .then((response) => response.json())
+          .then((data) => setForecastData(data))
+          .catch((err) => console.log());
       }
     };
     fetchWeather().catch((error) => console.log(error));
@@ -154,7 +159,7 @@ export default function App() {
           <div className="header-wrapper">
             <h4>Today's Highlight</h4>
           </div>
-          <div className="item-container" style={{marginBottom: '15px'}}>
+          <div className="item-container" style={{ marginBottom: "15px" }}>
             <div className="diagram-item">
               <WindStatus weatherData={weatherData} />
             </div>
@@ -164,7 +169,7 @@ export default function App() {
             </div>
 
             <div className="diagram-item">
-              <AirQuality weatherData={weatherData}/>
+              <AirQuality weatherData={weatherData} />
             </div>
           </div>
           <div className="item-container">
@@ -194,7 +199,8 @@ export default function App() {
       </div>
       <div className="bottom-section-container">
         <div className="forecast-container">
-          <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG}/>
+          <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG} />
+          <TomorrowWeatherHighlight forecastData={forecastData} weatherDaySVG={weatherDaySVG}/>
         </div>
       </div>
       {searchVisibility && (
