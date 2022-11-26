@@ -47,7 +47,7 @@ export default function TomorrowWeatherHighlight({ forecastData, weatherDaySVG }
       avgtemp_c, // add this data to chart
       condition: { code, text },
     },
-  } = forecastday[1];
+  } = forecastday[1]; // tomorrow day object
 
   return (
     <div

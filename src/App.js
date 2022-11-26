@@ -49,6 +49,7 @@ export default function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
   const [searchVisibility, setSearchVisibility] = useState(false);
+  const [weatherHighlightVisibility, setWeatherHighlightVisibility] = useState(true);
   const [weatherIcon, setWeatherIcon] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [currentRegion, setCurrentRegion] = useState("");
@@ -87,12 +88,17 @@ export default function App() {
     setTimeout(() => getSearchVisibility(), 300);
   }
 
+  function changeHighlightVisibility(e) {
+    e.target.scrollTop > 70 ? setWeatherHighlightVisibility(false) : setWeatherHighlightVisibility(true);
+  }
+
   console.log(`Current region: ${currentRegion}`);
   console.log("Search value:", searchValue);
   console.log("Filtered Regions:", filteredRegions);
   console.log(`weatherData: ${weatherData}`, weatherData);
   console.log("forecastData:", forecastData);
   console.log(`Search state: ${searchVisibility}`);
+  console.log(`HighlightVisibility state: ${weatherHighlightVisibility}`);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -198,9 +204,9 @@ export default function App() {
         </div>
       </div>
       <div className="bottom-section-container">
-        <div className="forecast-container">
+        <div className="forecast-container" onScroll={changeHighlightVisibility}>
           <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG} />
-          <TomorrowWeatherHighlight forecastData={forecastData} weatherDaySVG={weatherDaySVG}/>
+          {weatherHighlightVisibility ? <TomorrowWeatherHighlight forecastData={forecastData} weatherDaySVG={weatherDaySVG} /> : null}
         </div>
       </div>
       {searchVisibility && (
