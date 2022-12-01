@@ -155,7 +155,7 @@ export default function App() {
 
   return (
     <>
-      <div className="top-section-container">
+      <div className="page-container">
         <MainWeatherTab
           className={"main-weather-tab"}
           buttonComponent={<SearchButton onClickFunc={getSearchVisibility} />}
@@ -179,6 +179,7 @@ export default function App() {
               <AirQuality weatherData={weatherData} />
             </div>
           </div>
+
           <div className="item-container">
             <OneDataTab
               containerClassName={"one-data-item"}
@@ -203,11 +204,15 @@ export default function App() {
             />
           </div>
         </div>
-      </div>
-      <div className="bottom-section-container">
-        <div className="forecast-container" onScroll={changeHighlightVisibility}>
-          <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG} />
-          <TomorrowWeatherHighlight forecastData={forecastData} weatherDaySVG={weatherDaySVG} isVisible={weatherHighlightVisibility} />
+        <div className="forecast-container">
+          <TomorrowWeatherHighlight
+            forecastData={forecastData}
+            weatherDaySVG={weatherDaySVG}
+            isVisible={weatherHighlightVisibility}
+          />
+          <div className="forecast-wrapper" onScroll={changeHighlightVisibility}>
+            <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG} />
+          </div>
         </div>
       </div>
       {searchVisibility && (

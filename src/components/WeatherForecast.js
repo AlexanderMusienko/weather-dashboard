@@ -1,4 +1,5 @@
 import React from "react";
+import notAvailable from "../icons/not-available.svg";
 
 export default function WeatherForecast({ forecastData, weatherDaySVG }) {
   const weekday = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -98,7 +99,7 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
           month: "long",
         }),
         weekday[new Date(item.date).getDay()], // getting num value of weekday and putting it as array key
-        weatherDaySVG.filter((iconPath) => iconPath.includes(item.day.condition.code))[0],
+        weatherDaySVG.filter((iconPath) => iconPath.includes(item.day.condition.code))[0] || notAvailable,
         index
       )
   );

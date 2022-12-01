@@ -19,11 +19,12 @@ button {
   cursor: pointer;
 }
 
-.top-section-container {
+.page-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
   margin: 25px;
-  display: flex;
   gap: 15px;
-  flex-direction: row;
 }
 
 .main-weather-tab {
@@ -36,7 +37,6 @@ button {
   background-repeat: no-repeat;
   padding: 25px;
   border-radius: 25px;
-  width: 30%;
 }
 
 .button {
@@ -73,7 +73,6 @@ button {
 }
 
 .todays-highlight-container {
-  width: 70%;
   padding: 25px;
   background-color: var(--bg-color);
   background-image: url("./images/sun.svg");
@@ -93,11 +92,9 @@ button {
 }
 
 .wind-line-chart-container {
-  
 }
 
 .wind-bar-chart-container {
-  
 }
 
 .item-container {
@@ -141,32 +138,28 @@ button {
   font-size: 25px;
 }
 
-.bottom-section-container {
-  margin: 25px;
-  display: flex;
-  gap: 15px;
-  flex-direction: row;
+.forecast-container {
+  position: relative;
 }
 
-.forecast-container {
+.forecast-wrapper {
   display: flex;
   position: relative;
   flex-direction: column;
   max-height: 370px;
   overflow: scroll;
   scroll-snap-type: y proximity;
+  gap: 15px;
+  scrollbar-width: none; /* Firefox 64 */
   background-color: var(--bg-color);
   padding: 20px;
-  width: 30%;
-  gap: 15px;
   border-radius: 25px;
-  scrollbar-width: none; /* Firefox 64 */
 }
 
-.forecast-container::-webkit-scrollbar {
+.forecast-wrapper::-webkit-scrollbar {
   display: none;
 }
 
-.forecast-container:scrollbar {
+.forecast-wrapper:scrollbar {
   display: none;
 }

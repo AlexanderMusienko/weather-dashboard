@@ -58,16 +58,21 @@ export default function TomorrowWeatherHighlight({ forecastData, weatherDaySVG, 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, height: 0, padding: 0 }}
           style={{
-            overflow: 'clip',
+            overflow: "clip",
             display: "flex",
-            position: "sticky",
-            bottom: "0px",
+            width: "90%",
+            position: "absolute",
+            bottom: "20px",
+            left: "0",
+            right: "0",
+            margin: "0 auto",
             alignItems: "center",
             padding: "10px",
             borderRadius: "25px",
             boxShadow: "0px 0px 45px 0px #000000",
             backgroundImage:
               "linear-gradient(90deg, rgba(25,27,31,1) 0%, rgba(42,42,42,1) 10%, rgba(25,27,31,1) 40%)",
+            zIndex: 1,
           }}
         >
           <img
