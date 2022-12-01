@@ -38,14 +38,16 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
     forecast: { forecastday },
   } = forecastData ? forecastData : noData;
 
-  const card = (tempMax, tempMin, dateDM, weekday, iconPath) => {
+  const card = (tempMax, tempMin, dateDM, weekday, iconPath, key) => {
     return (
       <div
+        key={key + dateDM}
         style={{
           display: "grid",
           gridTemplateColumns: "1.5fr 1fr 1fr",
           justifyContent: "center",
           alignItems: "center",
+          scrollSnapAlign: 'center'
         }}
       >
         <div
@@ -86,7 +88,7 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
   }
 
   const mappedCards = forecastday.map(
-    (item) =>
+    (item, index) =>
       !isDateToday(item.date) &&
       card(
         item.day.maxtemp_c > 0 ? "+" + item.day.maxtemp_c : item.day.maxtemp_c,
@@ -95,8 +97,9 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
           day: "numeric",
           month: "long",
         }),
-        weekday[new Date(item.date).getDay()], // getting num of weekday and putting it in array key
-        weatherDaySVG.filter((iconPath) => iconPath.includes(item.day.condition.code))[0]
+        weekday[new Date(item.date).getDay()], // getting num value of weekday and putting it as array key
+        weatherDaySVG.filter((iconPath) => iconPath.includes(item.day.condition.code))[0],
+        index
       )
   );
 

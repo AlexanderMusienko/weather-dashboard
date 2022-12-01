@@ -11,6 +11,7 @@ import OneDataTab from "./components/OneDataTab";
 import AirQuality from "./components/AirQuality";
 import WeatherForecast from "./components/WeatherForecast";
 import TomorrowWeatherHighlight from "./components/TomorrowWeatherHighlight";
+import { AnimatePresence, motion } from "framer-motion";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -206,7 +207,7 @@ export default function App() {
       <div className="bottom-section-container">
         <div className="forecast-container" onScroll={changeHighlightVisibility}>
           <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG} />
-          {weatherHighlightVisibility ? <TomorrowWeatherHighlight forecastData={forecastData} weatherDaySVG={weatherDaySVG} /> : null}
+          <TomorrowWeatherHighlight forecastData={forecastData} weatherDaySVG={weatherDaySVG} isVisible={weatherHighlightVisibility} />
         </div>
       </div>
       {searchVisibility && (

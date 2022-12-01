@@ -149,11 +149,12 @@ button {
 }
 
 .forecast-container {
-  position: relative;
   display: flex;
+  position: relative;
   flex-direction: column;
   max-height: 370px;
   overflow: scroll;
+  scroll-snap-type: y proximity;
   background-color: var(--bg-color);
   padding: 20px;
   width: 30%;
