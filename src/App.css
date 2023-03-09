@@ -1,46 +1,161 @@
+:root {
+  --bg-color: #00000070;
+}
+
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
-    background-color: rgb(32, 32, 32);
+  background-color: #191b1f;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.top-section-container {
-    margin: 25px;
-    display: flex;
-    justify-content: row;
+.page-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+  margin: 25px;
+  gap: 15px;
 }
 
 .main-weather-tab {
-    display: flex;
-    flex-direction: column;
-    background-image: radial-gradient(circle, rgba(87, 87, 87, 0.5) 0%, rgba(16, 27, 39, 0.5) 100%);
-    backdrop-filter: blur(5px);
-    padding: 25px;
-    border-radius: 25px;
-    width: 35%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 25px;
+  border-radius: 25px;
+}
+
+.air-label {
+  height: 1rem;
 }
 
 .button {
-    width: 50px;
-    height: 50px;
-    align-self: end;
-    border: 0;
-    border-radius: 100%;
-    background-color: #00000080;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+  width: 50px;
+  height: 50px;
+  align-self: end;
+  border: 0;
+  border-radius: 100%;
+  background-color: #00000080;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .button:hover {
-    background-color: black;
+  background-color: black;
+}
+
+.region-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #1f1f1f30;
+  border: 0;
+  text-align: start;
+  border-radius: 15px;
+  font-size: 18px;
+}
+
+.region-button:hover {
+  background-color: #5e5e5e30;
+}
+
+.region-button:active {
+  background-color: #cccccc30;
+}
+
+.todays-highlight-container {
+  padding: 25px;
+  background-color: var(--bg-color);
+  background-position: center;
+  background-size: cover;
+  border-radius: 25px;
+}
+
+.header-wrapper {
+  margin-bottom: 15px;
+}
+
+.wind-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-container {
+  display: flex;
+  gap: 15px;
+}
+
+.diagram-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-basis: 33%;
+  min-width: 200px;
+  max-height: 240px;
+  background-color: #00000070;
+  border-radius: 15px;
+  padding: 20px 15px;
+  backdrop-filter: blur(25px);
+}
+
+.uv-index-gauge-container {
+  position: relative;
+}
+
+.uv-index-item {
+  text-align: center;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.one-data-item {
+  background-color: #00000070;
+  min-width: 200px;
+  flex-basis: 33%;
+  border-radius: 15px;
+  padding: 15px 15px;
+  backdrop-filter: blur(25px);
+}
+
+.one-data-value {
+  font-size: 25px;
+}
+
+.forecast-container {
+  position: relative;
+}
+
+.forecast-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-height: 370px;
+  overflow: scroll;
+  scroll-snap-type: y proximity;
+  gap: 15px;
+  scrollbar-width: none; /* Firefox 64 */
+  background-color: var(--bg-color);
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.forecast-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.forecast-wrapper:scrollbar {
+  display: none;
 }
