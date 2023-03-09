@@ -27,7 +27,7 @@ export default function MainWeatherTab({ weatherData, className, buttonComponent
       {buttonComponent}
       <img
         alt="weather"
-        src={weatherIcon ? weatherIcon : notAvailable}
+        src={weatherIcon || notAvailable}
         draggable="false"
         style={{ maxWidth: "128px" }}
       />

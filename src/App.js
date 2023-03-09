@@ -11,7 +11,6 @@ import OneDataTab from "./components/OneDataTab";
 import AirQuality from "./components/AirQuality";
 import WeatherForecast from "./components/WeatherForecast";
 import TomorrowWeatherHighlight from "./components/TomorrowWeatherHighlight";
-import { AnimatePresence, motion } from "framer-motion";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -35,7 +34,7 @@ console.log(weatherDaySVG);
 console.log(weatherNightSVG);
 
 const allRegionsJson = require("./allRegions");
-const actualKey = "407bde1c9d9744038d3175451222511";
+const actualKey = "09342fa0cc734108a45122858230803";
 
 const url = {
   test: "https://jsonplaceholder.typicode.com/todos/1/posts",
@@ -57,7 +56,7 @@ export default function App() {
 
   const {
     current: { humidity, vis_km, feelslike_c },
-  } = weatherData ? weatherData : { current: { humidity: 0, vis_km: 0, feelslike_c: 0 } };
+  } = weatherData || { current: { humidity: 0, vis_km: 0, feelslike_c: 0 } };
 
   const allRegions = JSON.parse(JSON.stringify(allRegionsJson));
   const allRegionsArr = [];
@@ -90,7 +89,7 @@ export default function App() {
   }
 
   function changeHighlightVisibility(e) {
-    e.target.scrollTop > 70 ? setWeatherHighlightVisibility(false) : setWeatherHighlightVisibility(true);
+    e.target.scrollTop > 20 ? setWeatherHighlightVisibility(false) : setWeatherHighlightVisibility(true);
   }
 
   console.log(`Current region: ${currentRegion}`);
@@ -214,6 +213,7 @@ export default function App() {
             <WeatherForecast forecastData={forecastData} weatherDaySVG={weatherDaySVG} />
           </div>
         </div>
+        <div className="todays-highlight-container"></div>
       </div>
       {searchVisibility && (
         <SearchWindow

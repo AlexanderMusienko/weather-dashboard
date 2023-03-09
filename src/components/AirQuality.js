@@ -1,5 +1,5 @@
 import React from 'react'
-import { BarList } from "reaviz";
+import { BarList, BarListSeries } from "reaviz";
 
 export default function AirQuality({ weatherData }) {
   const noData = {
@@ -60,6 +60,7 @@ export default function AirQuality({ weatherData }) {
           { key: "CO", data: co },
           { key: `NO2`, data: no2 },
         ]}
+        series={<BarListSeries labelPosition='bottom' valueClassName='air-label'/>}
       />
       <div style={{ display: "flex", justifyContent: "end" }}>
         <span>{airCondition}</span>
@@ -67,3 +68,4 @@ export default function AirQuality({ weatherData }) {
     </>
   );
 }
+
