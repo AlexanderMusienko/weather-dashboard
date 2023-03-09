@@ -2,6 +2,7 @@ import React from "react";
 import locationIcon from "../icons/location.svg";
 import calendarIcon from "../icons/calendar.svg";
 import notAvailable from "../icons/not-available.svg";
+import { Count } from "reaviz";
 
 export default function MainWeatherTab({ weatherData, className, buttonComponent, weatherIcon }) {
   const noData = {
@@ -32,7 +33,7 @@ export default function MainWeatherTab({ weatherData, className, buttonComponent
         style={{ maxWidth: "128px" }}
       />
       <span style={{ fontSize: "70px" }}>
-        {Math.round(temp_c)}
+        <Count decimalPlaces={1} to={Math.round(temp_c)} />
         <sup style={{ fontSize: "36px", fontWeight: "600" }}>°C</sup>
       </span>
 

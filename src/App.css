@@ -23,7 +23,7 @@ button {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
-  margin: 25px;
+  padding: 25px;
   gap: 15px;
 }
 
@@ -48,6 +48,7 @@ button {
   align-self: end;
   border: 0;
   border-radius: 100%;
+  border: 2px solid #141414;
   background-color: #00000080;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -59,8 +60,8 @@ button {
 
 .region-button {
   width: 100%;
-  padding: 15px;
-  background-color: #1f1f1f30;
+  padding: 15px 25px;
+  background-color: #20202070;
   border: 0;
   text-align: start;
   border-radius: 15px;
@@ -106,6 +107,7 @@ button {
   min-width: 200px;
   max-height: 240px;
   background-color: #00000070;
+  border: 1px solid #141414;
   border-radius: 15px;
   padding: 20px 15px;
   backdrop-filter: blur(25px);
@@ -128,6 +130,7 @@ button {
   border-radius: 15px;
   padding: 15px 15px;
   backdrop-filter: blur(25px);
+  border: 1px solid #141414;
 }
 
 .one-data-value {

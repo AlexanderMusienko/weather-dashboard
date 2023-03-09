@@ -35,10 +35,6 @@ export default function WindStatus({ weatherData }) {
     },
   } = weatherData ? weatherData : noData;
 
-  function ejectShortTime(dateString) {
-    return new Date(dateString).toLocaleTimeString([], { timeStyle: "short" });
-  }
-
   const windDuringDayData = hour
     ? hour.map((item, i) => {
         return { key: i, data: item.wind_kph };
@@ -55,7 +51,7 @@ export default function WindStatus({ weatherData }) {
 
   return (
     <>
-      <h5 style={{}}>Wind Status</h5>
+      <h5>Wind Status</h5>
 
       <div className="wind-chart-container">
         <LineChart

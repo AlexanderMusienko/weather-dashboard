@@ -4,12 +4,11 @@ import React from "react";
 const highlightContainerStyles = {
   overflow: "clip",
   display: "flex",
-  width: "90%",
   position: "absolute",
   bottom: "20px",
   left: "0",
   right: "0",
-  margin: "0 auto",
+  margin: "0 20px",
   alignItems: "center",
   padding: "10px",
   borderRadius: "25px",
