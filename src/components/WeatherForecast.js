@@ -48,7 +48,8 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
           gridTemplateColumns: "1.5fr 1fr 1fr",
           justifyContent: "center",
           alignItems: "center",
-          scrollSnapAlign: 'center'
+          scrollSnapAlign: 'center',
+          zIndex: 0
         }}
       >
         <div

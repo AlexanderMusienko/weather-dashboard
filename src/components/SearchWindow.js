@@ -21,6 +21,7 @@ export default function SearchWindow({ foundedCountriesList, onClickFunc, onChan
         height: "100vh",
         backgroundColor: "#00000080",
         backdropFilter: "blur(10px)",
+        zIndex: 1
       }}
     >
       <div
@@ -49,7 +50,8 @@ export default function SearchWindow({ foundedCountriesList, onClickFunc, onChan
           maxWidth: "450px",
           maxHeight: "450px",
           padding: "20px",
-          backgroundColor: "#00000050",
+          backgroundColor: "#15151570",
+          border: "1px solid #141414",
           borderRadius: "20px",
           zIndex: 1,
         }}
