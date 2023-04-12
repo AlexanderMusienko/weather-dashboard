@@ -1,6 +1,7 @@
 # WeatherService
-Still in development
-Project was created with React, SCSS and Reaviz Charts library. 
+_Still in development._  
+
+Project was created with React, SCSS and Reaviz Charts library.  
 https://www.weatherapi.com/ was used as API for getting weather data.
 
 ## Available Scripts
