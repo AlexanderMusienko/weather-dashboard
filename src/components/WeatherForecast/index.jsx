@@ -1,5 +1,5 @@
 import React from "react";
-import notAvailable from "../icons/not-available.svg";
+import notAvailable from "@icons/not-available.svg";
 
 export default function WeatherForecast({ forecastData, weatherDaySVG }) {
   const weekday = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];

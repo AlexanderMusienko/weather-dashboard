@@ -1,18 +1,19 @@
 import React from "react";
-import locationIcon from "../icons/location.svg";
-import calendarIcon from "../icons/calendar.svg";
-import notAvailable from "../icons/not-available.svg";
+import locationIcon from "@icons/location.svg";
+import calendarIcon from "@icons/calendar.svg";
+import notAvailable from "@icons/not-available.svg";
 import { Count } from "reaviz";
 
+const noData = {
+  current: {
+    temp_c: null,
+    last_updated: null,
+    condition: { text: null, icon: null },
+  },
+  location: { name: null, country: null },
+};
+
 export default function MainWeatherTab({ weatherData, className, buttonComponent, weatherIcon }) {
-  const noData = {
-    current: {
-      temp_c: null,
-      last_updated: null,
-      condition: { text: null, icon: null },
-    },
-    location: { name: null, country: null },
-  };
 
   const {
     current: {
