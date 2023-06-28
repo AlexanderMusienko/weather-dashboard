@@ -1,58 +1,46 @@
-import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import s from "./style.module.css";
 
-const highlightContainerStyles = {
-  overflow: "clip",
-  display: "flex",
-  position: "absolute",
-  bottom: "20px",
-  left: "0",
-  right: "0",
-  margin: "0 20px",
-  alignItems: "center",
-  padding: "10px",
-  borderRadius: "25px",
-  boxShadow: "0px 0px 45px 0px #000000",
-  backgroundImage:
-    "linear-gradient(90deg, rgba(25,27,31,1) 0%, rgba(42,42,42,1) 10%, rgba(25,27,31,1) 40%)",
-  zIndex: 1,
-}
+const noData = {
+  forecast: {
+    forecastday: [
+      {
+        date: "2022-11-12",
+        day: {
+          maxtemp_c: 30,
+          mintemp_c: -20,
+          avgtemp_c: 1.8,
+          condition: { code: 1000 },
+        },
+      },
+      {
+        date: "2022-11-12",
+        day: {
+          maxtemp_c: 30,
+          mintemp_c: 30,
+          avgtemp_c: 1.8,
+          condition: { code: 1000 },
+        },
+      },
+      {
+        date: "2022-11-12",
+        day: {
+          maxtemp_c: 30,
+          mintemp_c: 30,
+          avgtemp_c: 1.8,
+          condition: { code: 1000 },
+        },
+      },
+    ],
+  },
+};
 
-export default function TomorrowWeatherHighlight({ forecastData, weatherDaySVG, isVisible }) {
-  const noData = {
-    forecast: {
-      forecastday: [
-        {
-          date: "2022-11-12",
-          day: {
-            maxtemp_c: 30,
-            mintemp_c: -20,
-            avgtemp_c: 1.8,
-            condition: { code: 1000 },
-          },
-        },
-        {
-          date: "2022-11-12",
-          day: {
-            maxtemp_c: 30,
-            mintemp_c: 30,
-            avgtemp_c: 1.8,
-            condition: { code: 1000 },
-          },
-        },
-        {
-          date: "2022-11-12",
-          day: {
-            maxtemp_c: 30,
-            mintemp_c: 30,
-            avgtemp_c: 1.8,
-            condition: { code: 1000 },
-          },
-        },
-      ],
-    },
-  };
-
+export default function TomorrowWeatherHighlight({
+  forecastData,
+  weatherDaySVG,
+  isVisible,
+}) {
   const {
     forecast: { forecastday },
   } = forecastData || noData;
@@ -74,13 +62,20 @@ export default function TomorrowWeatherHighlight({ forecastData, weatherDaySVG, 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, height: 0, padding: 0 }}
-          style={highlightContainerStyles}
+          className={s.highlightContainer}
         >
           <img
-            style={{ width: "75px", marginRight: "10px" }}
+            className={s.weatherIcon}
             src={weatherDaySVG.filter((iconPath) => iconPath.includes(code))[0]}
           />
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "baseline" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "baseline",
+            }}
+            className={s.textContainer}
+          >
             <span style={{ fontSize: "12px" }}>Tomorrow</span>
             <span style={{ fontSize: "25px" }}>{avgtemp_c}°</span>
             <span style={{ fontSize: "12px" }}>{text}</span>

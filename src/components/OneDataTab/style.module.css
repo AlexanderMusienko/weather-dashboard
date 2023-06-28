@@ -1,0 +1,17 @@
+.header {
+  margin-bottom: 10px;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.oneDataValue {
+  font-size: 15px;
+}
+
+.bottomIcon {
+    height: 30px;
+}

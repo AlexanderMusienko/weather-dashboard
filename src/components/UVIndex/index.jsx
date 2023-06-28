@@ -9,7 +9,7 @@ export default function UVIndex({ weatherData }) {
       <h5>UV Index</h5>
       <div style={{ height: "130px" }}>
         <RadialGauge
-          data={[{ key: "UV index", data: uvValue}]}
+          data={[{ key: "UV index", data: uvValue }]}
           minValue={0}
           maxValue={13}
           height={205}
@@ -18,7 +18,9 @@ export default function UVIndex({ weatherData }) {
               arcWidth={30}
               label={null}
               valueLabel={null}
-              colorScheme={(data) => {return `hsl(${220 + (data.data * 10)},90%,50%)`}} // hsl(220,50%,50%)
+              colorScheme={(data) => {
+                return `hsl(${220 + data.data * 10},90%,50%)`;
+              }} // hsl(220,50%,50%)
               outerArc={<RadialGaugeArc disabled={true} color={"#c4c4c430"} />}
             />
           }

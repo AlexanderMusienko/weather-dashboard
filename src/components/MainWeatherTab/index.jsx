@@ -4,6 +4,8 @@ import calendarIcon from "@icons/calendar.svg";
 import notAvailable from "@icons/not-available.svg";
 import { Count } from "reaviz";
 
+import s from "./style.module.css";
+
 const noData = {
   current: {
     temp_c: null,
@@ -13,8 +15,12 @@ const noData = {
   location: { name: null, country: null },
 };
 
-export default function MainWeatherTab({ weatherData, className, buttonComponent, weatherIcon }) {
-
+export default function MainWeatherTab({
+  weatherData,
+  className,
+  buttonComponent,
+  weatherIcon,
+}) {
   const {
     current: {
       temp_c,
@@ -27,40 +33,48 @@ export default function MainWeatherTab({ weatherData, className, buttonComponent
   return (
     <div className={className}>
       {buttonComponent}
-      <img
-        alt="weather"
-        src={weatherIcon || notAvailable}
-        draggable="false"
-        style={{ maxWidth: "128px" }}
-      />
-      <span style={{ fontSize: "70px" }}>
+      <div className={s.weatherIconWrapper}>
+        <img
+          alt="weather icon"
+          src={weatherIcon || notAvailable}
+          draggable="false"
+        />
+      </div>
+      <span className={s.temperatureInfo}>
         <Count decimalPlaces={1} to={Math.round(temp_c)} />
-        <sup style={{ fontSize: "36px", fontWeight: "600" }}>°C</sup>
+        <sup className={s.tempUnitLabel}>°C</sup>
       </span>
 
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <img alt="weather" src={icon} draggable="false" style={{ maxWidth: "25px", marginRight: "5px" }} />
+      <div className="flex-align-center">
+        <img
+          alt="weather icon"
+          src={icon}
+          draggable="false"
+          className={s.weatherIconLabel}
+        />
         <span>{text}</span>
       </div>
 
-      <hr style={{ marginBlock: "15px", color: "#ffffff50" }} />
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "15px" }}>
-        <img
-          alt="location"
-          src={locationIcon}
-          draggable="false"
-          style={{ width: "15px", marginRight: "10px", filter: "opacity(0.8)" }}
-        />
-        <span>{`${name}, ${country}`}</span>
-      </div>
+      <hr className={s.separator} />
+      <div className={s.geoAndTimeContainer}>
+        <div className="flex-align-center">
+          <img
+            alt="location icon"
+            src={locationIcon}
+            draggable="false"
+            className={s.subIcon}
+          />
+          <span>{`${name}, ${country}`}</span>
+        </div>
 
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <img
-          alt="calendar"
-          src={calendarIcon}
-          style={{ width: "15px", marginRight: "10px", filter: "opacity(0.8)" }}
-        />
-        <span>{last_updated}</span>
+        <div className="flex-align-center">
+          <img
+            alt="calendar icon"
+            src={calendarIcon}
+            className={s.subIcon}
+          />
+          <span>{last_updated}</span>
+        </div>
       </div>
     </div>
   );
