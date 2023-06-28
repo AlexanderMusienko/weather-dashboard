@@ -1,0 +1,24 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: center;
+  z-index: 0;
+}
+
+.cardWeatherContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.weatherIcon {
+  height: 55px;
+  margin-right: 5px; 
+}
+
+.timeText {
+  font-size: 15px;
+  text-align: end;
+}
