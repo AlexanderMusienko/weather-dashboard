@@ -1,0 +1,9 @@
+.uvIndexGaugeContainer {
+    position: relative;
+}
+
+.uvIndexItem {
+    text-align: center;
+    font-size: 32px;
+    color: #ffffff;
+  }

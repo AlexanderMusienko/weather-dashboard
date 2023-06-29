@@ -1,0 +1,40 @@
+.separator {
+  margin-block: 15px;
+  color: #ffffff50;
+}
+
+.geoAndTimeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.weatherIconWrapper {
+  max-width: 128px;
+}
+
+.weatherIconLabel {
+  position: relative;
+  top: 1px;
+  width: 30px;
+  margin-right: 2.5px;
+}
+
+.temperatureInfo {
+  font-size: 70px;
+}
+
+.tempUnitLabel {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.subIcon {
+  width: 15px;
+  margin-right: 10px;
+  filter: opacity(0.8);
+}
+
+
