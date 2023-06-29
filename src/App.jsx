@@ -26,9 +26,6 @@ const thermometerIcon = mainIconsSvg.filter((path) =>
   path.includes("thermometer-icon")
 )[0];
 
-console.log(waterDropIcon);
-console.log(mainIconsSvg);
-
 const weatherDayIcons = require.context("./icons/weather_day", true, /\.svg$/);
 const weatherNightIcons = require.context("./icons/weather_night", true, /\.svg$/);
 const weatherDayIconsPaths = weatherDayIcons.keys();
@@ -37,9 +34,6 @@ const weatherDaySVG = weatherDayIconsPaths.map((path) => weatherDayIcons(path));
 const weatherNightSVG = weatherNightIconsPaths.map((path) =>
   weatherNightIcons(path)
 );
-
-console.log(weatherDaySVG);
-console.log(weatherNightSVG);
 
 const allRegionsJson = require("./allRegions");
 const actualKey = "bdedcb8b532f41648fe125540232906";
@@ -104,14 +98,6 @@ export default function App() {
       : setWeatherHighlightVisibility(true);
   }
 
-  console.log(`Current region: ${currentRegion}`);
-  console.log("Search value:", searchValue);
-  console.log("Filtered Regions:", filteredRegions);
-  console.log(`weatherData: ${weatherData}`, weatherData);
-  console.log("forecastData:", forecastData);
-  console.log(`Search state: ${searchVisibility}`);
-  console.log(`HighlightVisibility state: ${weatherHighlightVisibility}`);
-
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -152,7 +138,7 @@ export default function App() {
         )
           .then((response) => response.json())
           .then((data) => setForecastData(data))
-          .catch((err) => console.log());
+          .catch((err) => console.log(err));
       }
     };
     fetchWeather().catch((error) => console.log(error));
@@ -168,7 +154,6 @@ export default function App() {
         : weatherNightSVG.filter((svgName) => svgName.includes(weatherCode))[0];
 
       setWeatherIcon(notAvailable && weatherIcon);
-      console.log(weatherIcon, "weatherCode:", weatherCode, "isDay:", isDay);
     }
   }, [weatherData]);
 
