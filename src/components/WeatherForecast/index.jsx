@@ -34,13 +34,13 @@ const noData = {
 };
 
 const weekday = [
+  "Sunday", // Sunday is zero element because getDay method represent Sunday as 0
   "Monday",
   "Tuesday",
   "Wednesday",
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 ];
 
 function isDateToday(dateString) {
@@ -67,7 +67,7 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
 
   if (forecastday.length === 3) {
     console.warn(
-      "Forecastday data is not full (only two days of forecast will be shown). Using free api. For full api usage update api key"
+      "Forecastday data is not full (only two days of forecast will be shown). Using free api. For full api usage update api key."
     );
   }
 
