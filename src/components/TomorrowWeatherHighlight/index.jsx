@@ -68,14 +68,7 @@ export default function TomorrowWeatherHighlight({
             className={s.weatherIcon}
             src={weatherDaySVG.filter((iconPath) => iconPath.includes(code))[0]}
           />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "baseline",
-            }}
-            className={s.textContainer}
-          >
+          <div className={s.textContainer}>
             <span style={{ fontSize: "12px" }}>Tomorrow</span>
             <span style={{ fontSize: "25px" }}>{avgtemp_c}°</span>
             <span style={{ fontSize: "12px" }}>{text}</span>
