@@ -18,7 +18,22 @@
   margin-right: 5px; 
 }
 
-.timeText {
+.dateText {
   font-size: 15px;
   text-align: end;
 }
+
+.weekdayText {
+  font-size: 15px;
+  text-align: end;
+}
+
+@media (max-width: 1070px) {
+  .cardContainer {
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  .weekdayText {
+    display: none;
+  }
+} 

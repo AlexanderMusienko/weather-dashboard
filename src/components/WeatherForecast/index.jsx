@@ -65,7 +65,18 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
     forecast: { forecastday },
   } = forecastData ? forecastData : noData;
 
+  if (forecastday.length === 3) {
+    console.warn(
+      "Forecastday data is not full (only two days of forecast will be shown). Using free api. For full api usage update api key"
+    );
+  }
+
   const card = (tempMax, tempMin, dateDM, weekday, iconPath, key) => {
+    tempMax = Math.round(tempMax);
+    tempMin = Math.round(tempMin);
+    tempMax = tempMax > 0 ? "+" + tempMax : tempMax;
+    tempMin = tempMin > 0 ? "+" + tempMin : tempMin;
+
     return (
       <div key={key + dateDM} className={s.cardContainer}>
         <div className={s.cardWeatherContainer}>
@@ -76,8 +87,8 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
           </span>
         </div>
 
-        <span className={s.timeText}>{dateDM}</span>
-        <span className={s.timeText}>{weekday}</span>
+        <span className={s.dateText}>{dateDM}</span>
+        <span className={s.weekdayText}>{weekday}</span>
       </div>
     );
   };
@@ -86,11 +97,11 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
     (item, index) =>
       !isDateToday(item.date) &&
       card(
-        item.day.maxtemp_c > 0 ? "+" + item.day.maxtemp_c : item.day.maxtemp_c,
-        item.day.mintemp_c > 0 ? "+" + item.day.mintemp_c : item.day.mintemp_c,
+        item.day.maxtemp_c,
+        item.day.mintemp_c,
         new Date(item.date).toLocaleDateString("EN-us", {
           day: "numeric",
-          month: "long",
+          month: "short",
         }),
         weekday[new Date(item.date).getDay()], // getting num value of weekday and putting it as array key
         weatherDaySVG.filter((iconPath) =>
