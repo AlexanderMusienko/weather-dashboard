@@ -47,8 +47,8 @@ const actualKey = "bdedcb8b532f41648fe125540232906";
 const url = {
   test: "https://jsonplaceholder.typicode.com/todos/1/posts",
   main: `https://api.weatherapi.com/v1/current.json?`,
-  astro: `http://api.weatherapi.com/v1/astronomy.json?`,
-  forecast: `http://api.weatherapi.com/v1/forecast.json?`,
+  astro: `https://api.weatherapi.com/v1/astronomy.json?`,
+  forecast: `https://api.weatherapi.com/v1/forecast.json?`,
 };
 
 export default function App() {
