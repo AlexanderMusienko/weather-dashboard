@@ -102,6 +102,20 @@ export default function App() {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         setCurrentRegion(`${latitude},${longitude}`);
+      },
+      // failure getting geo behavior
+      () => {
+        fetch("https://api.bigdatacloud.net/data/client-ip") // getting client ip
+          .then((r) => r.json())
+          .then(({ ipString }) => fetch(`https://json.geoiplookup.io/${ipString}`)) // getting approximate client region
+          .then((r) => r.json())
+          .then(({ country_name, city }) =>
+            setCurrentRegion(`${city},${country_name}`)
+          )
+          .catch((err) => {
+            console.warn("Error while getting location by ip. Setting default region.");
+            setCurrentRegion("moscow, russia");
+          });
       }
     );
   }, []);
