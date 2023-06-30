@@ -28,6 +28,7 @@ import {
   LinearGauge,
   LinearGaugeSeries,
   LinearGaugeBar,
+  LinearGaugeOuterBar,
 } from "reaviz";
 import { resolveAirConditionLabel } from "@utils/resolveAirConditionLabel";
 import s from "./style.module.css";
@@ -89,6 +90,7 @@ export default function AirQuality({ weatherData }) {
               colorScheme={(data) => {
                 return `hsl(${220 + data.value * 12},90%,50%)`;
               }}
+              outerBar={<LinearGaugeOuterBar fill="#c4c4c430"/>}
             />
           }
         />
