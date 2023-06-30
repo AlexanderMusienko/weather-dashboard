@@ -158,7 +158,7 @@ export default function App() {
   }, [weatherData]);
 
   return (
-    <>
+    <div className="page-wrapper">
       <div className="page-container">
         <MainWeatherTab
           className={"main-weather-tab"}
@@ -233,6 +233,6 @@ export default function App() {
           onClickRegion={getRegionValue}
         />
       )}
-    </>
+    </div>
   );
 }

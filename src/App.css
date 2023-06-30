@@ -19,12 +19,21 @@ button {
   cursor: pointer;
 }
 
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
 .page-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
   padding: 25px;
   gap: 15px;
+  flex-basis: 1500px;
 }
 
 .main-weather-tab {
@@ -110,6 +119,7 @@ button {
   background-color: var(--bg-color);
   padding: 20px;
   border-radius: 25px;
+  min-width: 240px;
 }
 
 .forecast-wrapper::-webkit-scrollbar {
