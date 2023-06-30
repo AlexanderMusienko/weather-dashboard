@@ -65,7 +65,7 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
     forecast: { forecastday },
   } = forecastData ? forecastData : noData;
 
-  if (forecastday.length === 3) {
+  if (forecastData?.forecast.forecastday.length === 3) {
     console.warn(
       "Forecastday data is not full (only two days of forecast will be shown). Using free api. For full api usage update api key."
     );
