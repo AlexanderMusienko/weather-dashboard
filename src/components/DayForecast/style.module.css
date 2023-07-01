@@ -1,17 +1,16 @@
 .dayWeatherWrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 90%;
-    overflow-x: scroll;
 }
 
 .dayWeatherContainer {
-    flex: 1;
     max-width: 957px;
     display: flex;
     align-items: center;
     gap: 20px;
+    overflow-x: scroll;
 }
 
 .cardContainer {
@@ -22,6 +21,7 @@
     padding: 10px 25px;
     border-radius: 15px;
     gap: 5px;
+    min-width: 120px;
 }
 
 .imageWrapper {

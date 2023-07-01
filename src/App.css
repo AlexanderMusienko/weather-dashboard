@@ -60,15 +60,32 @@ button {
 }
 
 .todays-highlight-container {
+  max-width: 957px;
   padding: 25px;
   background-color: var(--bg-color);
   background-position: center;
   background-size: cover;
   border-radius: 25px;
+  min-width: 680px;
 }
 
 .header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 15px;
+  gap: 10px;
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch-container span {
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .wind-chart-container {

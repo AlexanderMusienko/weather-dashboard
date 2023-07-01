@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./style.module.css";
 import { resolveWeatherIcon } from "../../utils/resolveWeatherIcon";
 
@@ -12,7 +12,7 @@ const noData = {
   },
 };
 
-export default function DayForecast({ weatherData }) {
+export default function DayForecast({ weatherData, onlyFutureHours = false }) {
   const {
     forecast: {
       forecastday: [{ hour }],
@@ -28,7 +28,7 @@ export default function DayForecast({ weatherData }) {
     return currentHour <= itemHour;
   });
 
-  const hoursCards = filteredHours.map(
+  const hoursCards = (onlyFutureHours ? filteredHours : hour).map(
     ({ temp_c, wind_kph, time_epoch, is_day, condition: { code } }) => {
       const time = new Date(time_epoch * 1000).toLocaleTimeString(undefined, {
         hour: "numeric",

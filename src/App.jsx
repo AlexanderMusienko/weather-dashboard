@@ -12,6 +12,7 @@ import AirQuality from "./components/AirQuality";
 import WeatherForecast from "./components/WeatherForecast";
 import TomorrowWeatherHighlight from "./components/TomorrowWeatherHighlight";
 import DayForecast from "./components/DayForecast";
+import ReactSwitch from "react-switch";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -54,6 +55,7 @@ export default function App() {
   const [weatherIcon, setWeatherIcon] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [currentRegion, setCurrentRegion] = useState("");
+  const [onlyFutureHours, setOnlyFutureHours] = useState(false);
 
   const {
     current: { humidity, vis_km, feelslike_c },
@@ -91,6 +93,10 @@ export default function App() {
     const region = e.target.value;
     setCurrentRegion(region);
     setTimeout(() => getSearchVisibility(), 300);
+  }
+
+  function handleSwitchChange() {
+    setOnlyFutureHours(!onlyFutureHours);
   }
 
   function changeHighlightVisibility(e) {
@@ -241,10 +247,21 @@ export default function App() {
           </div>
         </div>
         <div className="todays-highlight-container">
-        <div className="header-wrapper">
+          <div className="header-wrapper">
             <h4>Day Forecast</h4>
+            <div className="switch-container">
+              <span>Display only future hours</span>
+              <ReactSwitch
+                aria-label="Display only future hours"
+                offColor="#242424"
+                onColor="#555555"
+                handleDiameter={20}
+                onChange={handleSwitchChange}
+                checked={onlyFutureHours}
+              />
+            </div>
           </div>
-          <DayForecast weatherData={weatherData}/>
+          <DayForecast weatherData={weatherData} onlyFutureHours={onlyFutureHours} />
         </div>
       </div>
       {searchVisibility && (
