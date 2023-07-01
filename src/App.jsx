@@ -11,6 +11,7 @@ import OneDataTab from "./components/OneDataTab";
 import AirQuality from "./components/AirQuality";
 import WeatherForecast from "./components/WeatherForecast";
 import TomorrowWeatherHighlight from "./components/TomorrowWeatherHighlight";
+import DayForecast from "./components/DayForecast";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
 const mainIconsPaths = mainIcons.keys();
@@ -113,7 +114,9 @@ export default function App() {
             setCurrentRegion(`${city},${country_name}`)
           )
           .catch((err) => {
-            console.warn("Error while getting location by ip. Setting default region.");
+            console.warn(
+              "Error while getting location by ip. Setting default region."
+            );
             setCurrentRegion("moscow, russia");
           });
       }
@@ -164,8 +167,8 @@ export default function App() {
       const isDay = weatherData.current.is_day;
 
       const weatherIcon = isDay
-        ? weatherDaySVG.filter((svgName) => svgName.includes(weatherCode))[0]
-        : weatherNightSVG.filter((svgName) => svgName.includes(weatherCode))[0];
+        ? weatherDaySVG.find((el) => el.includes(weatherCode))
+        : weatherNightSVG.find((el) => el.includes(weatherCode));
 
       setWeatherIcon(notAvailable && weatherIcon);
     }
@@ -237,7 +240,12 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="todays-highlight-container"></div>
+        <div className="todays-highlight-container">
+        <div className="header-wrapper">
+            <h4>Day Forecast</h4>
+          </div>
+          <DayForecast weatherData={weatherData}/>
+        </div>
       </div>
       {searchVisibility && (
         <SearchWindow

@@ -1,0 +1,49 @@
+.dayWeatherWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    overflow-x: scroll;
+}
+
+.dayWeatherContainer {
+    flex: 1;
+    max-width: 957px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: var(--bg-gradient);
+    padding: 10px 25px;
+    border-radius: 15px;
+    gap: 5px;
+}
+
+.imageWrapper {
+    width: 60px;
+}
+
+.imageWrapper img {
+    width: 100%;
+}
+
+.tempText {
+    font-size: 25px;
+}
+
+.windInfo {
+    font-size: 15px;
+}
+
+.tempUnit {
+    font-size: 13px;
+}
+
+.timeText {
+    font-size: 20px;
+}
