@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import s from "./style.module.css";
 import { resolveWeatherIcon } from "../../utils/resolveWeatherIcon";
+import { HorScrollHandler } from "../../utils/HorScrollHandler";
 
 const noData = {
   forecast: {
@@ -18,8 +19,6 @@ export default function DayForecast({ weatherData, onlyFutureHours = false }) {
       forecastday: [{ hour }],
     },
   } = weatherData ? weatherData : noData;
-
-  console.log(hour);
 
   const filteredHours = hour.filter(({ time_epoch }) => {
     const currentHour = new Date().getHours();
@@ -54,7 +53,9 @@ export default function DayForecast({ weatherData, onlyFutureHours = false }) {
 
   return (
     <div className={s.dayWeatherWrapper}>
-      <div className={s.dayWeatherContainer}>{hoursCards}</div>
+      <div onWheel={HorScrollHandler} className={s.dayWeatherContainer}>
+        {hoursCards}
+      </div>
     </div>
   );
 }

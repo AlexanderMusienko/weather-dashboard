@@ -20,7 +20,7 @@
     background-image: var(--bg-gradient);
     padding: 10px 25px;
     border-radius: 15px;
-    gap: 5px;
+    gap: 10px;
     min-width: 120px;
 }
 
