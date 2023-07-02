@@ -52,6 +52,7 @@ export default function TomorrowWeatherHighlight({
       mintemp_c, // add this data to chart
       avgtemp_c, // add this data to chart
       condition: { code, text },
+      maxwind_kph,
     },
   } = forecastday[1]; // this array key contains tomorrow day object
 
@@ -64,14 +65,20 @@ export default function TomorrowWeatherHighlight({
           exit={{ opacity: 0, height: 0, padding: 0 }}
           className={s.highlightContainer}
         >
-          <img
-            className={s.weatherIcon}
-            src={weatherDaySVG.filter((iconPath) => iconPath.includes(code))[0]}
-          />
-          <div className={s.textContainer}>
-            <span style={{ fontSize: "12px" }}>Tomorrow</span>
-            <span style={{ fontSize: "25px" }}>{avgtemp_c}°</span>
-            <span style={{ fontSize: "12px" }}>{text}</span>
+          <div className={s.mainWeatherContainer}>
+            <img
+              className={s.weatherIcon}
+              src={weatherDaySVG.filter((iconPath) => iconPath.includes(code))[0]}
+            />
+            <div className={s.textContainer}>
+              <span style={{ fontSize: "12px" }}>Tomorrow</span>
+              <span style={{ fontSize: "25px" }}>{avgtemp_c}°</span>
+              <span style={{ fontSize: "12px" }}>{text}</span>
+            </div>
+          </div>
+          <div className={s.extraWeatherContainer}>
+            <span className={s.extraWeatherLabel}>Wind speed</span>
+            <span>{maxwind_kph} km/h</span>
           </div>
         </motion.div>
       )}
