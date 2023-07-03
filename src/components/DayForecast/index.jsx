@@ -34,11 +34,16 @@ export default function DayForecast({ weatherData, onlyFutureHours = false }) {
         minute: "numeric",
       });
 
+      const currentHour = new Date().getHours();
+      const itemHour = new Date(time_epoch * 1000).getHours();
+
       const icon = resolveWeatherIcon(code, is_day);
 
       return (
         <div className={s.cardContainer} key={time_epoch + " forecastCard"}>
-          <span className={s.timeText}>{time}</span>
+          <span className={s.timeText}>
+            {currentHour === itemHour ? "Now" : time}
+          </span>
           <div className={s.imageWrapper}>
             <img src={icon} />
           </div>
