@@ -1,5 +1,7 @@
 import React from "react";
 import s from "./style.module.css";
+import { motion } from "framer-motion";
+import { variants } from "../../constants/framer-motion-variants";
 
 export default function SearchWindow({
   foundedCountriesList,
@@ -21,7 +23,13 @@ export default function SearchWindow({
   return (
     <div className={s.outerWindow}>
       <div className={s.backdrop} onClick={onClickFunc} />
-      <div className={s.innerWindow}>
+      <motion.div
+        variants={variants.searchBar}
+        initial={"initial"}
+        animate={"animate"}
+        exit={"exit"}
+        className={s.innerWindow}
+      >
         <input
           onChange={onChangeFunc}
           placeholder="Search Your Location"
@@ -32,7 +40,7 @@ export default function SearchWindow({
           }}
         />
         <div className={s.optionsContainer}>{jsxFoundedCountries}</div>
-      </div>
+      </motion.div>
     </div>
   );
 }
