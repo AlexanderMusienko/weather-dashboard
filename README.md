@@ -1,11 +1,11 @@
 # WeatherService
 _Still in development._  
 
-Technology stack: 
-*React*
-*Reaviz Сharts*
-*Framer Motion*
-*CSS modules*
+Technology stack:  
+*React*  
+*Reaviz Сharts*  
+*Framer Motion*  
+*CSS modules*  
 
 https://www.weatherapi.com/ was used as API for getting weather data.
 
