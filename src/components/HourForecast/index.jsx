@@ -16,7 +16,7 @@ const noData = {
   },
 };
 
-export default function DayForecast({ weatherData, onlyFutureHours = false }) {
+export default function HourForecast({ weatherData, onlyFutureHours = false }) {
   const {
     location: { localtime },
     forecast: {

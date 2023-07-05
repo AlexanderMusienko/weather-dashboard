@@ -2,6 +2,7 @@ import React from "react";
 import notAvailable from "@icons/not-available.svg";
 import s from "./style.module.css";
 import { AnimatePresence, motion } from "framer-motion";
+import { variants } from "../../constants/framer-motion-variants";
 
 const noData = {
   forecast: {
@@ -61,7 +62,7 @@ function isDateToday(dateString) {
   return today === comparedDate;
 }
 
-export default function WeatherForecast({ forecastData, weatherDaySVG }) {
+export default function WeekForecast({ forecastData, weatherDaySVG }) {
   const {
     forecast: { forecastday },
   } = forecastData ? forecastData : noData;
@@ -80,9 +81,10 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
 
     return (
       <motion.div
-        initial={{ opacity: 0, transform: "scale(0.8)" }}
-        animate={{ opacity: 1, transform: "scale(1)" }}
-        exit={{ opacity: 0 }}
+        initial={"initial"}
+        animate={"animate"}
+        exit={"exit"}
+        variants={variants.weekForecast}
         key={key + dateDM}
         className={s.cardContainer}
       >

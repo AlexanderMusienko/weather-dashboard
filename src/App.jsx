@@ -9,9 +9,9 @@ import WindStatus from "./components/WindStatus";
 import UVIndex from "./components/UVIndex";
 import OneDataTab from "./components/OneDataTab";
 import AirQuality from "./components/AirQuality";
-import WeatherForecast from "./components/WeatherForecast";
+import WeekForecast from "./components/WeekForecast";
 import TomorrowWeatherHighlight from "./components/TomorrowWeatherHighlight";
-import DayForecast from "./components/DayForecast";
+import HourForecast from "./components/HourForecast";
 import ReactSwitch from "react-switch";
 
 const mainIcons = require.context("./icons", false, /\.svg$/);
@@ -240,7 +240,7 @@ export default function App() {
             />
           )}
           <div className="forecast-wrapper" onScroll={changeHighlightVisibility}>
-            <WeatherForecast
+            <WeekForecast
               forecastData={forecastData}
               weatherDaySVG={weatherDaySVG}
             />
@@ -261,7 +261,7 @@ export default function App() {
               />
             </div>
           </div>
-          <DayForecast weatherData={weatherData} onlyFutureHours={onlyFutureHours} />
+          <HourForecast weatherData={weatherData} onlyFutureHours={onlyFutureHours} />
         </div>
       </div>
       {searchVisibility && (
