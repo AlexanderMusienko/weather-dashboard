@@ -27,7 +27,6 @@ export default function DayForecast({ weatherData, onlyFutureHours = false }) {
     const currentHour = new Date(localtime).getHours();
     const itemHour = new Date(time).getHours();
 
-    console.log(currentHour);
     return currentHour <= itemHour;
   });
 
@@ -45,9 +44,9 @@ export default function DayForecast({ weatherData, onlyFutureHours = false }) {
 
       return (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+        initial={{ opacity: 0, transform: "scale(0.8)" }}
+        animate={{ opacity: 1, transform: "scale(1)" }}
+        exit={{ opacity: 0 }}
           className={s.cardContainer}
           key={time + " forecastCard"}
         >

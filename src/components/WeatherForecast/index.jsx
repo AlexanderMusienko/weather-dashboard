@@ -1,6 +1,7 @@
 import React from "react";
 import notAvailable from "@icons/not-available.svg";
 import s from "./style.module.css";
+import { AnimatePresence, motion } from "framer-motion";
 
 const noData = {
   forecast: {
@@ -78,7 +79,13 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
     tempMin = tempMin > 0 ? "+" + tempMin : tempMin;
 
     return (
-      <div key={key + dateDM} className={s.cardContainer}>
+      <motion.div
+        initial={{ opacity: 0, transform: "scale(0.8)" }}
+        animate={{ opacity: 1, transform: "scale(1)" }}
+        exit={{ opacity: 0 }}
+        key={key + dateDM}
+        className={s.cardContainer}
+      >
         <div className={s.cardWeatherContainer}>
           <img alt="weather" src={iconPath} className={s.weatherIcon} />
 
@@ -89,7 +96,7 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
 
         <span className={s.dateText}>{dateDM}</span>
         <span className={s.weekdayText}>{weekday}</span>
-      </div>
+      </motion.div>
     );
   };
 
@@ -111,5 +118,5 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
       )
   );
 
-  return <>{mappedCards}</>;
+  return <AnimatePresence>{mappedCards}</AnimatePresence>;
 }
