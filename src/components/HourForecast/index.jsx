@@ -3,6 +3,7 @@ import s from "./style.module.css";
 import { resolveWeatherIcon } from "../../utils/resolveWeatherIcon";
 import { HorScrollHandler } from "../../utils/HorScrollHandler";
 import { motion, AnimatePresence } from "framer-motion";
+import { variants } from "../../constants/framer-motion-variants";
 
 const noData = {
   location: { localtime: 0 },
@@ -15,7 +16,7 @@ const noData = {
   },
 };
 
-export default function DayForecast({ weatherData, onlyFutureHours = false }) {
+export default function HourForecast({ weatherData, onlyFutureHours = false }) {
   const {
     location: { localtime },
     forecast: {
@@ -27,12 +28,11 @@ export default function DayForecast({ weatherData, onlyFutureHours = false }) {
     const currentHour = new Date(localtime).getHours();
     const itemHour = new Date(time).getHours();
 
-    console.log(currentHour);
     return currentHour <= itemHour;
   });
 
   const hoursCards = (onlyFutureHours ? filteredHours : hour).map(
-    ({ temp_c, wind_kph, time, is_day, condition: { code } }) => {
+    ({ temp_c, wind_kph, time, is_day, condition: { code } }, i) => {
       const timeForPrint = new Date(time).toLocaleTimeString(undefined, {
         hour: "numeric",
         minute: "numeric",
@@ -45,11 +45,12 @@ export default function DayForecast({ weatherData, onlyFutureHours = false }) {
 
       return (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+        initial={"initial"}
+        animate={"animate"}
+        exit={"exit"}
+        variants={variants.hourForecast}
           className={s.cardContainer}
-          key={time + " forecastCard"}
+          key={time + " forecastCard" + i}
         >
           <span className={s.timeText}>
             {currentHour === itemHour ? "Now" : timeForPrint}

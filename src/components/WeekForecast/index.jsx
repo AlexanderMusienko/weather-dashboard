@@ -1,6 +1,8 @@
 import React from "react";
 import notAvailable from "@icons/not-available.svg";
 import s from "./style.module.css";
+import { AnimatePresence, motion } from "framer-motion";
+import { variants } from "../../constants/framer-motion-variants";
 
 const noData = {
   forecast: {
@@ -60,7 +62,7 @@ function isDateToday(dateString) {
   return today === comparedDate;
 }
 
-export default function WeatherForecast({ forecastData, weatherDaySVG }) {
+export default function WeekForecast({ forecastData, weatherDaySVG }) {
   const {
     forecast: { forecastday },
   } = forecastData ? forecastData : noData;
@@ -78,7 +80,14 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
     tempMin = tempMin > 0 ? "+" + tempMin : tempMin;
 
     return (
-      <div key={key + dateDM} className={s.cardContainer}>
+      <motion.div
+        initial={"initial"}
+        animate={"animate"}
+        exit={"exit"}
+        variants={variants.weekForecast}
+        key={key + dateDM}
+        className={s.cardContainer}
+      >
         <div className={s.cardWeatherContainer}>
           <img alt="weather" src={iconPath} className={s.weatherIcon} />
 
@@ -89,7 +98,7 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
 
         <span className={s.dateText}>{dateDM}</span>
         <span className={s.weekdayText}>{weekday}</span>
-      </div>
+      </motion.div>
     );
   };
 
@@ -111,5 +120,5 @@ export default function WeatherForecast({ forecastData, weatherDaySVG }) {
       )
   );
 
-  return <>{mappedCards}</>;
+  return <AnimatePresence>{mappedCards}</AnimatePresence>;
 }
