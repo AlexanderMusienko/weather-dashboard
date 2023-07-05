@@ -13,6 +13,20 @@ export const variants = {
       opacity: 0,
     },
   },
+  searchBar: {
+    initial: {
+      opacity: 0,
+      transform: "scale(0.8)",
+    },
+    animate: {
+      opacity: 1,
+      transform: "scale(1)",
+      transition: { duration: 0.4 },
+    },
+    exit: {
+      opacity: 0,
+    },
+  },
   weekForecast: {
     initial: {
       opacity: 0,

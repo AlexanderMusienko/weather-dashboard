@@ -85,7 +85,7 @@ export default function WeekForecast({ forecastData, weatherDaySVG }) {
         animate={"animate"}
         exit={"exit"}
         variants={variants.weekForecast}
-        key={key + dateDM}
+        key={key + dateDM + tempMax + tempMin}
         className={s.cardContainer}
       >
         <div className={s.cardWeatherContainer}>
