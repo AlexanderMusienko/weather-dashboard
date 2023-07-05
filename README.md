@@ -1,7 +1,12 @@
 # WeatherService
 _Still in development._  
 
-Project was created with React, CSS modules and Reaviz Charts library.  
+Technology stack: 
+*React*
+*Reaviz Сharts*
+*Framer Motion*
+*CSS modules*
+
 https://www.weatherapi.com/ was used as API for getting weather data.
 
 ## Available Scripts
