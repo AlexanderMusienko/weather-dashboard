@@ -1,5 +1,4 @@
 # WeatherService
-_Still in development._  
 
 Technology stack:  
 *React*  
