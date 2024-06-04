@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/WeatherService/static/css/main.1882a08b.css",
-    "main.js": "/WeatherService/static/js/main.daf0bc0a.js",
+    "main.css": "/WeatherService/static/css/main.7260831a.css",
+    "main.js": "/WeatherService/static/js/main.764b900b.js",
     "static/media/1207-overcast-day-sleet.svg": "/WeatherService/static/media/1207-overcast-day-sleet.1482a8379c1e090be2cc.svg",
     "static/media/1207-overcast-night-sleet.svg": "/WeatherService/static/media/1207-overcast-night-sleet.07f615adb501b3c041cf.svg",
     "static/media/1069-1204-partly-cloudy-day-sleet.svg": "/WeatherService/static/media/1069-1204-partly-cloudy-day-sleet.b7b708c4d31c9ee57958.svg",
@@ -40,11 +40,11 @@
     "static/media/water-drop-icon.svg": "/WeatherService/static/media/water-drop-icon.0fce037c8036c3bfc5b8.svg",
     "static/media/search.svg": "/WeatherService/static/media/search.9ccc920edc8e9ac9986e9dcfeade7514.svg",
     "static/media/not-available.svg": "/WeatherService/static/media/not-available.30bbb31b3565c565aaf1b7c1abd216b1.svg",
-    "main.1882a08b.css.map": "/WeatherService/static/css/main.1882a08b.css.map",
-    "main.daf0bc0a.js.map": "/WeatherService/static/js/main.daf0bc0a.js.map"
+    "main.7260831a.css.map": "/WeatherService/static/css/main.7260831a.css.map",
+    "main.764b900b.js.map": "/WeatherService/static/js/main.764b900b.js.map"
   },
   "entrypoints": [
-    "static/css/main.1882a08b.css",
-    "static/js/main.daf0bc0a.js"
+    "static/css/main.7260831a.css",
+    "static/js/main.764b900b.js"
   ]
 }
