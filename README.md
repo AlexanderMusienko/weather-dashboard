@@ -1,4 +1,4 @@
-# WeatherService
+# Weather Dashboard
 
 Technology stack:  
 *React*  
