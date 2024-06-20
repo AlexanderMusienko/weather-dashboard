@@ -8,6 +8,5 @@ module.exports = {
         "@icons": resolvePath("./src/icons"),
         "@utils": resolvePath("./src/utils")
       }
-      
     },
   };
